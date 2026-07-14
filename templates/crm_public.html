@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% block title %}CRM Pipeline — Total Tech Serve{% endblock %}
+{% block meta_desc %}Live overview of our lead pipeline — new enquiries, contacted, proposal and won leads.{% endblock %}
+
+{% block extra_head %}
+<style>
+  .crmp-hero{background:var(--navy-dark);padding:8.5rem 1.5rem 2.75rem;}
+  .crmp-hero-inner{max-width:1100px;margin:0 auto;}
+  .crmp-eyebrow{font-size:0.75rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--peach);margin-bottom:0.6rem;}
+  .crmp-hero h1{color:#fff;font-size:2rem;font-weight:800;margin-bottom:0.5rem;}
+  .crmp-hero p{color:rgba(255,255,255,0.6);font-size:0.95rem;max-width:560px;line-height:1.6;}
+  .crmp-wrap{max-width:1100px;margin:0 auto;padding:2.75rem 1.5rem 4rem;}
+  .crmp-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem;margin-bottom:2rem;}
+  .crmp-card{background:#fff;border-radius:14px;padding:1.4rem 1.2rem;text-align:center;box-shadow:0 6px 20px rgba(18,53,91,0.07);border:1px solid #f0ebe5;position:relative;overflow:hidden;}
+  .crmp-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;}
+  .crmp-card.blue::before{background:#3b82f6}
+  .crmp-card.peach::before{background:var(--peach-dark)}
+  .crmp-card.orange::before{background:#e05a20}
+  .crmp-card.green::before{background:#22c55e}
+  .crmp-num{font-size:2.1rem;font-weight:800;color:var(--navy);line-height:1;}
+  .crmp-lbl{font-size:0.72rem;color:#aaa;font-weight:700;text-transform:uppercase;letter-spacing:0.09em;margin-top:0.4rem;}
+  .crmp-pipeline{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;}
+  .crmp-col{background:#fff;border-radius:12px;padding:1.1rem;border:1px solid #f0ebe5;box-shadow:0 6px 20px rgba(18,53,91,0.06);text-align:center;min-width:0;}
+  .crmp-col-hdr{font-size:0.7rem;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;padding-bottom:0.7rem;margin-bottom:0.7rem;border-bottom:2px solid;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .crmp-col-hdr.new{color:#3b82f6;border-color:#3b82f6}
+  .crmp-col-hdr.contacted{color:var(--peach-dark);border-color:var(--peach-dark)}
+  .crmp-col-hdr.proposal{color:#e05a20;border-color:#e05a20}
+  .crmp-col-hdr.won{color:#22c55e;border-color:#22c55e}
+  .crmp-col-hdr.lost{color:#ef4444;border-color:#ef4444}
+  .crmp-col-num{font-size:1.6rem;font-weight:800;color:var(--navy);}
+  .crmp-col-sub{font-size:0.68rem;color:#bbb;margin-top:0.2rem;}
+  .crmp-note{display:flex;align-items:flex-start;gap:0.6rem;background:#fdf9f6;border:1px solid #f0ebe5;border-radius:10px;padding:0.9rem 1.1rem;margin-top:1.75rem;font-size:0.82rem;color:#8a8a8a;line-height:1.6;}
+  .crmp-refresh{display:inline-flex;align-items:center;gap:0.4rem;background:var(--navy);color:#fff;border:none;padding:0.55rem 1.1rem;border-radius:8px;font-weight:600;font-size:0.8rem;cursor:pointer;font-family:inherit;white-space:nowrap;}
+  .crmp-refresh:hover{background:var(--navy-light);}
+  .crmp-toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;flex-wrap:wrap;gap:0.75rem;}
+  .crmp-toolbar h3{font-size:1rem;font-weight:700;color:var(--navy);}
+  @media(max-width:900px){
+    .crmp-pipeline{grid-template-columns:repeat(3,1fr);}
+  }
+  @media(max-width:768px){
+    .crmp-hero{padding:7.5rem 1.25rem 2.25rem;}
+    .crmp-hero h1{font-size:1.6rem;}
+    .crmp-wrap{padding:2rem 1.25rem 3rem;}
+    .crmp-stats{grid-template-columns:1fr 1fr;gap:0.85rem;}
+    .crmp-card{padding:1.1rem 0.9rem;}
+    .crmp-num{font-size:1.7rem;}
+  }
+  @media(max-width:560px){
+    .crmp-pipeline{grid-template-columns:1fr 1fr;}
+  }
+  @media(max-width:400px){
+    .crmp-stats{grid-template-columns:1fr;}
+    .crmp-pipeline{grid-template-columns:1fr;}
+    .crmp-toolbar{flex-direction:column;align-items:flex-start;}
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="crmp-hero">
+  <div class="crmp-hero-inner">
+    <div class="crmp-eyebrow">Live Lead Pipeline</div>
+    <h1>CRM Overview</h1>
+    <p>A live look at how enquiries are moving through our pipeline. For privacy, individual customer details are only visible to authorised staff.</p>
+  </div>
+</section>
+
+<div class="crmp-wrap">
+  <div class="crmp-stats">
+    <div class="crmp-card blue"><div class="crmp-num" id="s-new">0</div><div class="crmp-lbl">New</div></div>
+    <div class="crmp-card peach"><div class="crmp-num" id="s-contacted">0</div><div class="crmp-lbl">Contacted</div></div>
+    <div class="crmp-card orange"><div class="crmp-num" id="s-proposal">0</div><div class="crmp-lbl">Proposal</div></div>
+    <div class="crmp-card green"><div class="crmp-num" id="s-won">0</div><div class="crmp-lbl">Won</div></div>
+  </div>
+
+  <div class="crmp-toolbar">
+    <h3>Pipeline Breakdown</h3>
+    <button class="crmp-refresh" onclick="loadStats()">🔄 Refresh</button>
+  </div>
+
+  <div class="crmp-pipeline">
+    <div class="crmp-col">
+      <div class="crmp-col-hdr new">New</div>
+      <div class="crmp-col-num" id="c-new">0</div>
+      <div class="crmp-col-sub">leads</div>
+    </div>
+    <div class="crmp-col">
+      <div class="crmp-col-hdr contacted">Contacted</div>
+      <div class="crmp-col-num" id="c-contacted">0</div>
+      <div class="crmp-col-sub">leads</div>
+    </div>
+    <div class="crmp-col">
+      <div class="crmp-col-hdr proposal">Proposal</div>
+      <div class="crmp-col-num" id="c-proposal">0</div>
+      <div class="crmp-col-sub">leads</div>
+    </div>
+    <div class="crmp-col">
+      <div class="crmp-col-hdr won">Won</div>
+      <div class="crmp-col-num" id="c-won">0</div>
+      <div class="crmp-col-sub">leads</div>
+    </div>
+    <div class="crmp-col">
+      <div class="crmp-col-hdr lost">Lost</div>
+      <div class="crmp-col-num" id="c-lost">0</div>
+      <div class="crmp-col-sub">leads</div>
+    </div>
+  </div>
+
+  <div class="crmp-note">🔒 Customer names, phone numbers and messages are private and only accessible to our authorised admin team.</div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+async function loadStats(){
+  try{
+    const r = await fetch('/crm-stats-json');
+    const d = await r.json();
+    ['new','contacted','proposal','won'].forEach(k=>{
+      document.getElementById('s-'+k).textContent = d[k] ?? 0;
+    });
+    ['new','contacted','proposal','won','lost'].forEach(k=>{
+      document.getElementById('c-'+k).textContent = d[k] ?? 0;
+    });
+  }catch(e){ /* silent fail — page still shows zeros */ }
+}
+loadStats();
+</script>
+{% endblock %}

@@ -1,0 +1,442 @@
+{% extends "base.html" %}
+{% block title %}Total Tech Serve — One-Touch IT, Insurance & Business Innovation{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-video-bg" id="heroVideoBg">
+    <video class="active" muted autoplay playsinline preload="auto" disablepictureinpicture disableremoteplayback src="{{ url_for('static', filename='videos/hero/hero-1.mp4') }}"></video>
+    <video muted playsinline preload="auto" disablepictureinpicture disableremoteplayback src="{{ url_for('static', filename='videos/hero/hero-2.mp4') }}"></video>
+  </div>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-orb hero-orb-3"></div>
+  <div class="hero-particles"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <div class="hero-badge-dot"></div>
+        <span>Bengaluru's Trusted Technology Partner</span>
+      </div>
+      <h1 class="display-font">One-Touch Solution for <span class="highlight">IT, Insurance</span> &amp; Business Innovation</h1>
+      <p class="hero-desc">Comprehensive technology, security, and business support solutions designed to help organisations operate efficiently and securely — delivered by an expert team you can trust.</p>
+      <div class="hero-btns">
+        <a href="{{ url_for('services') }}" class="btn btn-primary btn-arrow nav-link-internal">Explore Services</a>
+        <a href="{{ url_for('contact') }}" class="btn btn-outline nav-link-internal">Get a Free Quote</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat-card">
+        <div class="hero-stat-num">24/6</div>
+        <div class="hero-stat-title">Dedicated Support</div>
+        <div class="hero-stat-desc">Round-the-clock virtual &amp; on-site assistance</div>
+      </div>
+      <div class="hero-stat-card">
+        <div class="hero-stat-num">3×</div>
+        <div class="hero-stat-title">On-Site Visits/Month</div>
+        <div class="hero-stat-desc">Up to three monthly on-site engineer visits</div>
+      </div>
+      <div class="hero-stat-card">
+        <div class="hero-stat-num">4×</div>
+        <div class="hero-stat-title">Annual Maintenance</div>
+        <div class="hero-stat-desc">Quarterly preventive visits keeping systems optimised</div>
+      </div>
+      <div class="hero-stat-card">
+        <div class="hero-stat-num">12mo</div>
+        <div class="hero-stat-title">Full-Year Coverage</div>
+        <div class="hero-stat-desc">Customised solutions for evolving business needs</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <div class="marquee-item"><span class="marquee-dot"></span> IT AMC</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> Repair &amp; Diagnostics</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> CCTV Surveillance</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> Network Security</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> Hardware Rentals</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> Insurance Services</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> Access Control</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> 24/6 Support</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> IT AMC</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> Repair &amp; Diagnostics</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> CCTV Surveillance</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> Network Security</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> Hardware Rentals</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> Insurance Services</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> Access Control</div>
+    <div class="marquee-item"><span class="marquee-dot"></span> 24/6 Support</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">What We Do</span>
+      <h2>Everything Your Business Needs, Under One Roof</h2>
+      <p>From preventive maintenance to network infrastructure, CCTV, and corporate insurance — one partner for your entire technology ecosystem.</p>
+      <div class="heading-line"></div>
+    </div>
+    <div class="services-grid pop-stagger">
+      <article class="glow-card">
+        <div class="glow-card-media">
+          <video class="glow-card-video" autoplay muted loop playsinline preload="metadata" poster="{{ url_for('static', filename='images/services/thumb/amc.jpg') }}">
+            <source src="{{ url_for('static', filename='videos/amc.mp4') }}" type="video/mp4"/>
+          </video>
+        </div>
+        <div class="glow-card-body">
+          <h3>IT AMC</h3>
+          <p>Annual Maintenance Contracts with quarterly preventive visits, health checks, malware removal, and OS updates to keep your systems at peak performance.</p>
+          <a href="{{ url_for('services') }}#amc" class="btn btn-navy btn-glow btn-ripple nav-link-internal" style="margin-top:1.2rem;padding:0.5rem 1.1rem;font-size:0.82rem;">Learn More →</a>
+        </div>
+      </article>
+      <article class="glow-card">
+        <div class="glow-card-media">
+          <video class="glow-card-video" autoplay muted loop playsinline preload="metadata" poster="{{ url_for('static', filename='images/services/thumb/repair.jpg') }}">
+            <source src="{{ url_for('static', filename='videos/repair.mp4') }}" type="video/mp4"/>
+          </video>
+        </div>
+        <div class="glow-card-body">
+          <h3>Repair &amp; Diagnostics</h3>
+          <p>Certified engineers providing advanced fault detection and repair for desktops, laptops, servers, printers, and networking equipment.</p>
+          <a href="{{ url_for('services') }}#repair" class="btn btn-navy btn-glow btn-ripple nav-link-internal" style="margin-top:1.2rem;padding:0.5rem 1.1rem;font-size:0.82rem;">Learn More →</a>
+        </div>
+      </article>
+      <article class="glow-card">
+        <div class="glow-card-media">
+          <video class="glow-card-video" autoplay muted loop playsinline preload="metadata" poster="{{ url_for('static', filename='images/services/thumb/network.jpg') }}">
+            <source src="{{ url_for('static', filename='videos/network.mp4') }}" type="video/mp4"/>
+          </video>
+        </div>
+        <div class="glow-card-body">
+          <h3>Network &amp; Security</h3>
+          <p>Internet setup, CCTV surveillance, access control, and network architecture — protecting your premises and keeping operations connected.</p>
+          <a href="{{ url_for('services') }}#network" class="btn btn-navy btn-glow btn-ripple nav-link-internal" style="margin-top:1.2rem;padding:0.5rem 1.1rem;font-size:0.82rem;">Learn More →</a>
+        </div>
+      </article>
+      <article class="glow-card">
+        <div class="glow-card-media">
+          <video class="glow-card-video" autoplay muted loop playsinline preload="metadata" poster="{{ url_for('static', filename='images/services/thumb/hardware.jpg') }}">
+            <source src="{{ url_for('static', filename='videos/hardware.mp4') }}" type="video/mp4"/>
+          </video>
+        </div>
+        <div class="glow-card-body">
+          <h3>Hardware Sales &amp; Rentals</h3>
+          <p>Desktops, laptops, servers, and accessories for purchase or flexible rental. Emergency backup systems provided when your primary hardware needs repair.</p>
+          <a href="{{ url_for('services') }}#hardware" class="btn btn-navy btn-glow btn-ripple nav-link-internal" style="margin-top:1.2rem;padding:0.5rem 1.1rem;font-size:0.82rem;">Learn More →</a>
+        </div>
+      </article>
+      <article class="glow-card">
+        <div class="glow-card-media">
+          <video class="glow-card-video" autoplay muted loop playsinline preload="metadata" poster="{{ url_for('static', filename='images/services/thumb/insurance.jpg') }}">
+            <source src="{{ url_for('static', filename='videos/insurance.mp4') }}" type="video/mp4"/>
+          </video>
+        </div>
+        <div class="glow-card-body">
+          <h3>Insurance Services</h3>
+          <p>Corporate and individual insurance guidance tailored to your industry — protecting your business, assets, and people with the right coverage.</p>
+          <a href="{{ url_for('services') }}#insurance" class="btn btn-navy btn-glow btn-ripple nav-link-internal" style="margin-top:1.2rem;padding:0.5rem 1.1rem;font-size:0.82rem;">Learn More →</a>
+        </div>
+      </article>
+      <article class="glow-card" style="background:var(--navy-dark);border-color:rgba(247,169,85,0.25);display:flex;align-items:center;">
+        <div class="glow-card-body" style="padding:2rem;">
+          <div style="font-size:2.5rem;margin-bottom:1rem;color:var(--peach);animation:floatChip 3s ease-in-out infinite;display:inline-block;">→</div>
+          <h3 style="color:white;">Ready to get started?</h3>
+          <p style="color:rgba(255,255,255,0.55);">Talk to our team and receive a customised proposal within 24 hours.</p>
+          <a href="{{ url_for('contact') }}" class="btn btn-primary btn-glow btn-ripple nav-link-internal" style="margin-top:1.2rem;">Contact Us</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAND -->
+<div class="stats-band">
+  <div class="container">
+    <div class="stats-grid stagger">
+      <div class="stat-item">
+        <span class="stat-num" data-counter data-val="24" data-suffix="/6">24/6</span>
+        <div class="stat-label">Technical Assistance</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num" data-counter data-val="4" data-suffix="×">4×</span>
+        <div class="stat-label">Annual Preventive Maintenance</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num" data-counter data-val="3" data-suffix="×">3×</span>
+        <div class="stat-label">On-Site Visits Per Month</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num" data-counter data-val="12" data-suffix="mo">12mo</span>
+        <div class="stat-label">Continuous Support Coverage</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num" data-counter data-val="100" data-suffix="+">100+</span>
+        <div class="stat-label">Systems Maintained</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WHY US + QUOTE -->
+<section class="section section-alt">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;">
+      <div class="reveal-left">
+        <span class="section-eyebrow">Why Total Tech Serve</span>
+        <h2 style="margin-bottom:2rem;">Why Businesses Choose Us</h2>
+        <div class="why-item">
+          <div class="why-num">1</div>
+          <div><h4 style="margin-bottom:0.35rem;">Certified Expertise</h4><p>Advanced fault detection, repair capabilities, and deep technical knowledge delivering results generalist providers cannot match.</p></div>
+        </div>
+        <div class="why-item">
+          <div class="why-num">2</div>
+          <div><h4 style="margin-bottom:0.35rem;">Comprehensive Coverage</h4><p>A single point of accountability for your entire technology and security ecosystem — eliminating vendor fragmentation.</p></div>
+        </div>
+        <div class="why-item">
+          <div class="why-num">3</div>
+          <div><h4 style="margin-bottom:0.35rem;">Proactive &amp; Responsive</h4><p>Preventive maintenance schedules and rapid on-site response mean faster resolution times and reduced downtime.</p></div>
+        </div>
+      </div>
+      <div class="reveal-right">
+        <div class="card" style="background:var(--navy-dark);border-color:rgba(201,162,39,0.15);padding:2.5rem;">
+          <p style="color:var(--gold);font-size:3rem;line-height:1;margin-bottom:1rem;">"</p>
+          <p style="color:rgba(255,255,255,0.82);font-size:1.05rem;line-height:1.85;font-style:italic;">Technology should empower businesses, not slow them down. Through reliable support, innovative solutions, and customer-focused service, we help organisations achieve greater productivity, security, and growth.</p>
+          <div style="margin-top:1.75rem;display:flex;align-items:center;gap:0.75rem;">
+            <div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--orange));display:flex;align-items:center;justify-content:center;font-weight:700;color:white;">TT</div>
+            <div><strong style="color:white;display:block;font-size:0.9rem;">Total Tech Serve</strong><span style="color:rgba(255,255,255,0.4);font-size:0.75rem;">Bengaluru, Karnataka</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW WE WORK -->
+<section class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Our Process</span>
+      <h2>How We Work</h2>
+      <p>A simple, structured approach to keeping your business technology running flawlessly.</p>
+      <div class="heading-line"></div>
+    </div>
+    <div class="process-steps stagger">
+      <div class="process-step">
+        <div class="step-circle">01</div>
+        <div class="step-title">Assess</div>
+        <div class="step-desc">We evaluate your current IT infrastructure and identify gaps</div>
+      </div>
+      <div class="process-step">
+        <div class="step-circle">02</div>
+        <div class="step-title">Plan</div>
+        <div class="step-desc">Customised service plan tailored to your business needs</div>
+      </div>
+      <div class="process-step">
+        <div class="step-circle">03</div>
+        <div class="step-title">Deploy</div>
+        <div class="step-desc">Smooth onboarding with minimal disruption to operations</div>
+      </div>
+      <div class="process-step">
+        <div class="step-circle">04</div>
+        <div class="step-title">Maintain</div>
+        <div class="step-desc">Proactive visits, monitoring, and 24/6 support coverage</div>
+      </div>
+      <div class="process-step">
+        <div class="step-circle">05</div>
+        <div class="step-title">Evolve</div>
+        <div class="step-desc">Continuous optimisation as your business grows and changes</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS MARQUEE -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Trusted By</span>
+      <h2>Leading Organisations Across Industries</h2>
+      <div class="heading-line"></div>
+    </div>
+    <div class="grid-3 stagger">
+      <div class="glow-card" style="border-top:3px solid var(--navy);">
+        <div class="glow-card-media" style="aspect-ratio:16/10;">
+          <img src="{{ url_for('static', filename='images/sectors/corporate.jpg') }}" alt="Corporate office building served by Total Tech Serve" loading="lazy"/>
+        </div>
+        <div class="glow-card-body">
+          <h4>Corporate &amp; Enterprise</h4>
+          <p>Large organisations relying on our infrastructure and AMC services to maintain business continuity.</p>
+        </div>
+      </div>
+      <div class="glow-card" style="border-top:3px solid var(--gold);">
+        <div class="glow-card-media" style="aspect-ratio:16/10;">
+          <img src="{{ url_for('static', filename='images/sectors/media.jpg') }}" alt="Media broadcast control room supported by Total Tech Serve" loading="lazy"/>
+        </div>
+        <div class="glow-card-body">
+          <h4>Media &amp; Services</h4>
+          <p>Media companies trust our network, security, and IT support to keep critical operations running.</p>
+        </div>
+      </div>
+      <div class="glow-card" style="border-top:3px solid var(--orange);">
+        <div class="glow-card-media" style="aspect-ratio:16/10;">
+          <img src="{{ url_for('static', filename='images/sectors/education.jpg') }}" alt="School classroom equipped with Total Tech Serve hardware and security" loading="lazy"/>
+        </div>
+        <div class="glow-card-body">
+          <h4>Education Sector</h4>
+          <p>Schools and colleges benefit from tailored AMC, hardware rental, and security solutions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON TABLE -->
+<section class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Why We're Different</span>
+      <h2>Total Tech Serve vs Others</h2>
+      <div class="heading-line"></div>
+    </div>
+    <div class="reveal" style="overflow:hidden;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th style="text-align:left;">Feature</th>
+            <th style="background:linear-gradient(135deg,var(--navy),var(--navy-light));color:var(--gold);">Total Tech Serve</th>
+            <th>Others</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Single Point of Contact for IT + Insurance</td><td class="compare-us"><span class="check-yes">✓</span></td><td><span class="check-no">✗</span></td></tr>
+          <tr><td>24/6 Dedicated Support</td><td class="compare-us"><span class="check-yes">✓</span></td><td><span class="check-no">✗</span></td></tr>
+          <tr><td>Quarterly Preventive Maintenance</td><td class="compare-us"><span class="check-yes">✓</span></td><td><span class="check-maybe">?</span></td></tr>
+          <tr><td>On-Site Visits Included (3×/month)</td><td class="compare-us"><span class="check-yes">✓</span></td><td><span class="check-no">✗</span></td></tr>
+          <tr><td>Emergency Backup Hardware</td><td class="compare-us"><span class="check-yes">✓</span></td><td><span class="check-no">✗</span></td></tr>
+          <tr><td>CCTV + Access Control</td><td class="compare-us"><span class="check-yes">✓</span></td><td><span class="check-maybe">?</span></td></tr>
+          <tr><td>Certified Engineers</td><td class="compare-us"><span class="check-yes">✓</span></td><td><span class="check-maybe">?</span></td></tr>
+          <tr><td>Special Pricing on Spare Parts</td><td class="compare-us"><span class="check-yes">✓</span></td><td><span class="check-no">✗</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- PARTNER LOGOS -->
+<section class="section section-alt" id="partners">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Integrated Partners</span>
+      <h2>Trusted by Leading Brands</h2>
+      <p>We work with and support India's most recognised organisations across industries.</p>
+      <div class="heading-line"></div>
+    </div>
+  </div>
+  <div class="partners-marquee-wrap">
+    <div class="partners-track">
+      <div class="partner-logo-card"><img src="/static/images/partners/zerodha.png" alt="Zerodha"/><div class="partner-name">Zerodha</div></div>
+      <div class="partner-logo-card"><img src="/static/images/partners/karle_infra.png" alt="Karle Infra"/><div class="partner-name">Karle Infra</div></div>
+      <div class="partner-logo-card"><img src="/static/images/partners/nbr.png" alt="NBR Group"/><div class="partner-name">NBR Group</div></div>
+      <div class="partner-logo-card"><img src="/static/images/partners/zoomcar.png" alt="Zoomcar"/><div class="partner-name">Zoomcar</div></div>
+      <div class="partner-logo-card"><img src="/static/images/partners/bigbasket.png" alt="Big Basket"/><div class="partner-name">Big Basket</div></div>
+      <div class="partner-logo-card"><img src="/static/images/partners/spar.png" alt="Spar"/><div class="partner-name">Spar</div></div>
+      <div class="partner-logo-card"><img src="/static/images/partners/cultfit.png" alt="Cult.fit"/><div class="partner-name">Cult.fit</div></div>
+      <div class="partner-logo-card"><img src="/static/images/partners/iam.png" alt="IAM"/><div class="partner-name">IAM</div></div>
+      <div class="partner-logo-card" style="background:white;"><div style="font-size:1rem;font-weight:800;color:#1a2f52;letter-spacing:0.05em;">NK<span style="color:#f28c28;">SQUARED</span></div><div class="partner-name">NKSQUARED</div></div>
+      <!-- Duplicate for seamless loop -->
+      <div class="partner-logo-card"><img src="/static/images/partners/zerodha.png" alt="Zerodha"/><div class="partner-name">Zerodha</div></div>
+      <div class="partner-logo-card"><img src="/static/images/partners/karle_infra.png" alt="Karle Infra"/><div class="partner-name">Karle Infra</div></div>
+      <div class="partner-logo-card"><img src="/static/images/partners/nbr.png" alt="NBR Group"/><div class="partner-name">NBR Group</div></div>
+      <div class="partner-logo-card"><img src="/static/images/partners/zoomcar.png" alt="Zoomcar"/><div class="partner-name">Zoomcar</div></div>
+      <div class="partner-logo-card"><img src="/static/images/partners/bigbasket.png" alt="Big Basket"/><div class="partner-name">Big Basket</div></div>
+      <div class="partner-logo-card"><img src="/static/images/partners/spar.png" alt="Spar"/><div class="partner-name">Spar</div></div>
+      <div class="partner-logo-card"><img src="/static/images/partners/cultfit.png" alt="Cult.fit"/><div class="partner-name">Cult.fit</div></div>
+      <div class="partner-logo-card"><img src="/static/images/partners/iam.png" alt="IAM"/><div class="partner-name">IAM</div></div>
+      <div class="partner-logo-card" style="background:white;"><div style="font-size:1rem;font-weight:800;color:#1a2f52;letter-spacing:0.05em;">NK<span style="color:#f28c28;">SQUARED</span></div><div class="partner-name">NKSQUARED</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band" style="background:linear-gradient(135deg,var(--navy-dark),var(--navy));">
+  <div class="container reveal">
+    <span class="section-eyebrow">Get Started Today</span>
+    <h2 style="color:white;margin-bottom:0.75rem;">Ready to Simplify Your IT Operations?</h2>
+    <p style="color:rgba(255,255,255,0.6);margin-bottom:2rem;">Get a customised proposal from our team within 24 hours. No commitment required.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="{{ url_for('contact') }}" class="btn btn-primary btn-arrow nav-link-internal">Talk to Our Team</a>
+      <a href="tel:+919886999575" class="btn btn-outline">📞 Call Now</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Partners logo marquee speed control
+const partnersTrack = document.getElementById('partnersTrack');
+// Already handled by CSS animation
+
+// Hero background video playlist — plays continuously, one clip after another, no pause/stop control
+(function(){
+  const sources = [
+    "{{ url_for('static', filename='videos/hero/hero-1.mp4') }}",
+    "{{ url_for('static', filename='videos/hero/hero-2.mp4') }}",
+    "{{ url_for('static', filename='videos/hero/hero-3.mp4') }}",
+    "{{ url_for('static', filename='videos/hero/hero-4.mp4') }}"
+  ];
+  const wrap = document.getElementById('heroVideoBg');
+  if (!wrap || !sources.length) return;
+  const vids = wrap.querySelectorAll('video');
+  let activeIdx = 0;          // which <video> element (0 or 1) is currently visible
+  let nextSourceIdx = 2 % sources.length; // next clip to load into the hidden element
+
+  vids[0].src = sources[0];
+  vids[1].src = sources[1 % sources.length];
+
+  function playActive(){
+    const v = vids[activeIdx];
+    v.currentTime = 0;
+    const p = v.play();
+    if (p && p.catch) p.catch(()=>{});
+  }
+  playActive();
+
+  vids.forEach((v, i) => {
+    v.addEventListener('ended', () => {
+      if (i !== activeIdx) return; // ignore the hidden/preloading element
+      const hiddenIdx = activeIdx === 0 ? 1 : 0;
+      const hidden = vids[hiddenIdx];
+
+      // Swap visibility (crossfade via CSS opacity transition)
+      vids[activeIdx].classList.remove('active');
+      hidden.classList.add('active');
+      hidden.currentTime = 0;
+      const p = hidden.play();
+      if (p && p.catch) p.catch(()=>{});
+      activeIdx = hiddenIdx;
+
+      // Load the next clip in the playlist into the now-hidden element for next time
+      const outgoing = vids[activeIdx === 0 ? 1 : 0];
+      outgoing.src = sources[nextSourceIdx];
+      outgoing.load();
+      nextSourceIdx = (nextSourceIdx + 1) % sources.length;
+    });
+  });
+})();
+</script>
+{% endblock %}

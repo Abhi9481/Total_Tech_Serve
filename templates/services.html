@@ -1,0 +1,379 @@
+{% extends "base.html" %}
+{% block title %}Our Services — Total Tech Serve{% endblock %}
+{% block meta_desc %}Total Tech Serve offers IT AMC, repair, CCTV, network security, hardware and insurance services in Bengaluru.{% endblock %}
+
+{% block extra_head %}
+<style>
+.video-section {
+  background: var(--navy-dark);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 16/9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 16px 44px rgba(12,35,64,0.28);
+}
+.video-section video {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  border-radius: var(--radius-lg);
+}
+.video-placeholder {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  background-size: cover; background-position: center;
+  border-radius: var(--radius-lg);
+  border: 2px dashed rgba(247,169,85,0.3);
+  transition: all 0.3s;
+}
+.video-placeholder::before{
+  content:''; position:absolute; inset:0; border-radius:inherit;
+  background: linear-gradient(180deg, rgba(12,35,64,0.35) 0%, rgba(12,35,64,0.78) 100%);
+}
+.video-placeholder:hover { border-color: rgba(242,140,40,0.7); }
+.video-play-btn {
+  width: 72px; height: 72px; border-radius: 50%;
+  background: rgba(242,140,40,0.18);
+  border: 2px solid var(--peach-dark);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1rem;
+  position: relative; z-index: 1;
+  transition: all 0.3s;
+}
+.video-placeholder:hover .video-play-btn {
+  background: linear-gradient(135deg, var(--peach-dark), var(--teal));
+  border-color: transparent;
+  transform: scale(1.1);
+  box-shadow: 0 0 0 10px rgba(242,140,40,0.12);
+}
+.video-placeholder:hover .video-play-btn svg { fill: white; }
+.video-play-btn svg { width: 28px; height: 28px; fill: var(--peach-dark); margin-left: 4px; }
+.video-placeholder-title { position:relative; z-index:1; color: white; font-size: 0.9rem; font-weight: 700; text-shadow:0 2px 8px rgba(0,0,0,0.4); }
+.video-placeholder-sub { position:relative; z-index:1; color: rgba(255,255,255,0.55); font-size: 0.75rem; margin-top: 0.3rem; }
+.video-upload-note {
+  font-size: 0.75rem; color: var(--text-muted);
+  margin-top: 0.75rem; text-align: center;
+  background: var(--cream-light); padding: 0.5rem 1rem;
+  border-radius: 20px; display: inline-block;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="page-hero">
+  <span class="section-eyebrow">What We Offer</span>
+  <h1>Our Core Services</h1>
+  <p>A single, reliable partner for all your technology, security, and insurance needs.</p>
+  <div class="page-hero-line"></div>
+</div>
+
+<!-- ===== IT AMC ===== -->
+<section class="section" id="amc">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1.5fr;gap:3.5rem;align-items:start;">
+
+      <!-- Left sticky panel -->
+      <div class="reveal-left" style="position:sticky;top:90px;">
+        <span class="section-eyebrow">IT AMC</span>
+        <h2 style="margin-bottom:1rem;">Annual Maintenance Contracts</h2>
+        <p style="margin-bottom:1.5rem;">Structured, proactive care across hardware, software, networks, and printers — ensuring your systems stay healthy, secure, and performing at their best.</p>
+
+        <!-- Stats -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:1.75rem;">
+          <div style="background:var(--navy-dark);border-radius:10px;padding:1rem;text-align:center;border:1px solid rgba(247,169,85,0.15);">
+            <div style="font-size:1.8rem;font-weight:800;color:var(--peach);">24/6</div>
+            <div style="color:rgba(255,255,255,0.5);font-size:0.7rem;margin-top:0.25rem;">Dedicated Support</div>
+          </div>
+          <div style="background:var(--navy-dark);border-radius:10px;padding:1rem;text-align:center;border:1px solid rgba(247,169,85,0.15);">
+            <div style="font-size:1.8rem;font-weight:800;color:var(--peach);">3×</div>
+            <div style="color:rgba(255,255,255,0.5);font-size:0.7rem;margin-top:0.25rem;">On-Site Visits/Month</div>
+          </div>
+          <div style="background:var(--navy-dark);border-radius:10px;padding:1rem;text-align:center;border:1px solid rgba(247,169,85,0.15);">
+            <div style="font-size:1.8rem;font-weight:800;color:var(--peach);">4×</div>
+            <div style="color:rgba(255,255,255,0.5);font-size:0.7rem;margin-top:0.25rem;">Annual Maintenance</div>
+          </div>
+          <div style="background:var(--navy-dark);border-radius:10px;padding:1rem;text-align:center;border:1px solid rgba(247,169,85,0.15);">
+            <div style="font-size:1.8rem;font-weight:800;color:var(--peach);">12mo</div>
+            <div style="color:rgba(255,255,255,0.5);font-size:0.7rem;margin-top:0.25rem;">Full Coverage</div>
+          </div>
+        </div>
+
+        <!-- VIDEO -->
+        <div class="video-section" id="video-amc" onclick="playVideo('video-amc','amc-player')">
+          <div class="video-placeholder" id="placeholder-amc" style="background-image:url('{{ url_for('static', filename='images/services/thumb/amc.jpg') }}');">
+            <div class="video-play-btn">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <div class="video-placeholder-title">IT AMC — How It Works</div>
+            <div class="video-placeholder-sub">30 sec explainer video</div>
+          </div>
+          <video id="amc-player" style="display:none;" controls>
+            <source src="{{ url_for('static', filename='videos/amc.mp4') }}" type="video/mp4"/>
+          </video>
+        </div>
+
+        <a href="{{ url_for('contact') }}" class="btn btn-primary btn-arrow nav-link-internal" style="width:100%;justify-content:center;margin-top:1.25rem;">Get AMC Quote</a>
+      </div>
+
+      <!-- Right: 6 benefit cards -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;" class="stagger">
+        <div class="card" style="padding:1.4rem;">
+          <div class="service-icon navy" style="width:44px;height:44px;font-size:1.1rem;margin-bottom:0.9rem;">🔍</div>
+          <h4 style="color:var(--peach-dark);margin-bottom:0.5rem;">Quarterly Preventive Maintenance</h4>
+          <p style="font-size:0.82rem;">Up to <strong>4 comprehensive visits annually</strong> — system health checks, malware &amp; virus removal, hardware cleaning, OS &amp; software updates, and performance optimisation.</p>
+        </div>
+        <div class="card" style="padding:1.4rem;">
+          <div class="service-icon peach" style="width:44px;height:44px;font-size:1.1rem;margin-bottom:0.9rem;">📞</div>
+          <h4 style="color:var(--peach-dark);margin-bottom:0.5rem;">24/6 Dedicated Support</h4>
+          <p style="font-size:0.82rem;">Round-the-clock virtual and on-site assistance with <strong>remote troubleshooting</strong>, physical visits whenever required, and <strong>up to 3 on-site visits per month</strong>.</p>
+        </div>
+        <div class="card" style="padding:1.4rem;">
+          <div class="service-icon orange" style="width:44px;height:44px;font-size:1.1rem;margin-bottom:0.9rem;">🖨️</div>
+          <h4 style="color:var(--peach-dark);margin-bottom:0.5rem;">Printer &amp; Networking Support</h4>
+          <p style="font-size:0.82rem;">Initial setup and configuration, <strong>network connectivity management</strong>, and ongoing maintenance to keep your office infrastructure running smoothly.</p>
+        </div>
+        <div class="card" style="padding:1.4rem;">
+          <div class="service-icon navy" style="width:44px;height:44px;font-size:1.1rem;margin-bottom:0.9rem;">🛡️</div>
+          <h4 style="color:var(--peach-dark);margin-bottom:0.5rem;">Antivirus Protection</h4>
+          <p style="font-size:0.82rem;"><strong>Licensed antivirus deployment</strong> with annual updates, security monitoring, and enhanced protection for your data and operating systems.</p>
+        </div>
+        <div class="card" style="padding:1.4rem;">
+          <div class="service-icon peach" style="width:44px;height:44px;font-size:1.1rem;margin-bottom:0.9rem;">💾</div>
+          <h4 style="color:var(--peach-dark);margin-bottom:0.5rem;">Backup &amp; Emergency Systems</h4>
+          <p style="font-size:0.82rem;">Backup systems available during <strong>critical situations</strong>, ensuring business continuity even when your primary hardware requires repair or replacement.</p>
+        </div>
+        <div class="card" style="padding:1.4rem;">
+          <div class="service-icon orange" style="width:44px;height:44px;font-size:1.1rem;margin-bottom:0.9rem;">🏷️</div>
+          <h4 style="color:var(--peach-dark);margin-bottom:0.5rem;">Special Pricing on Parts</h4>
+          <p style="font-size:0.82rem;">AMC clients receive <strong>preferential pricing on spare parts</strong> and replacements, reducing total cost of ownership and faster resolution during hardware failures.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div style="background:linear-gradient(90deg,transparent,var(--peach),transparent);height:1px;opacity:0.3;"></div>
+
+<!-- ===== REPAIR ===== -->
+<section class="section section-alt" id="repair">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;">
+      <div class="reveal-left">
+        <span class="section-eyebrow">Repair &amp; Diagnostics</span>
+        <h2>Certified Repair Services</h2>
+        <p style="margin-bottom:1.5rem;">Our certified engineers provide advanced fault detection and repair across all hardware and software categories, getting your systems back online fast.</p>
+        <div class="grid-2 stagger" style="margin-bottom:1.5rem;">
+          <div class="card" style="padding:1.1rem;"><div style="font-size:1.5rem;margin-bottom:0.5rem;">💻</div><h4 style="font-size:0.9rem;">Laptops &amp; Desktops</h4><p style="font-size:0.8rem;">Hardware repair, motherboard diagnostics, screen replacement, data recovery.</p></div>
+          <div class="card" style="padding:1.1rem;"><div style="font-size:1.5rem;margin-bottom:0.5rem;">🖨️</div><h4 style="font-size:0.9rem;">Printers</h4><p style="font-size:0.8rem;">All brands — laser, inkjet and thermal printers serviced on-site.</p></div>
+          <div class="card" style="padding:1.1rem;"><div style="font-size:1.5rem;margin-bottom:0.5rem;">🖥️</div><h4 style="font-size:0.9rem;">Servers</h4><p style="font-size:0.8rem;">RAID configuration, OS reinstallation, performance tuning.</p></div>
+          <div class="card" style="padding:1.1rem;"><div style="font-size:1.5rem;margin-bottom:0.5rem;">🔌</div><h4 style="font-size:0.9rem;">Networking</h4><p style="font-size:0.8rem;">Switch, router, and firewall troubleshooting and replacement.</p></div>
+        </div>
+        <a href="{{ url_for('contact') }}" class="btn btn-navy btn-arrow nav-link-internal">Book a Repair</a>
+      </div>
+
+      <!-- VIDEO -->
+      <div class="reveal-right">
+        <div class="video-section" id="video-repair" onclick="playVideo('video-repair','repair-player')">
+          <div class="video-placeholder" id="placeholder-repair" style="background-image:url('{{ url_for('static', filename='images/services/thumb/repair.jpg') }}');">
+            <div class="video-play-btn">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <div class="video-placeholder-title">Certified Repair Services</div>
+            <div class="video-placeholder-sub">30 sec explainer video</div>
+          </div>
+          <video id="repair-player" style="display:none;" controls>
+            <source src="{{ url_for('static', filename='videos/repair.mp4') }}" type="video/mp4"/>
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div style="background:linear-gradient(90deg,transparent,var(--peach),transparent);height:1px;opacity:0.3;"></div>
+
+<!-- ===== NETWORK & SECURITY ===== -->
+<section class="section" id="network">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;">
+
+      <!-- VIDEO LEFT -->
+      <div class="reveal-left">
+        <div class="video-section" id="video-network" onclick="playVideo('video-network','network-player')">
+          <div class="video-placeholder" id="placeholder-network" style="background-image:url('{{ url_for('static', filename='images/services/thumb/network.jpg') }}');">
+            <div class="video-play-btn">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <div class="video-placeholder-title">Infrastructure &amp; Surveillance</div>
+            <div class="video-placeholder-sub">30 sec explainer video</div>
+          </div>
+          <video id="network-player" style="display:none;" controls>
+            <source src="{{ url_for('static', filename='videos/network.mp4') }}" type="video/mp4"/>
+          </video>
+        </div>
+      </div>
+
+      <div class="reveal-right">
+        <span class="section-eyebrow">Network &amp; Security</span>
+        <h2>Infrastructure &amp; Surveillance Solutions</h2>
+        <p style="margin-bottom:1.75rem;">From internet setup to CCTV surveillance and access control — we protect your premises and keep your operations connected.</p>
+        <div class="grid-3 stagger" style="margin-bottom:1.5rem;">
+          <div class="card" style="padding:1.25rem;border-top:3px solid var(--navy);">
+            <div class="service-icon navy" style="width:40px;height:40px;font-size:1rem;margin-bottom:0.75rem;">🌐</div>
+            <h4 style="font-size:0.9rem;">Internet Setup</h4>
+            <p style="font-size:0.8rem;">Configuration, connectivity management and ongoing network maintenance.</p>
+          </div>
+          <div class="card" style="padding:1.25rem;border-top:3px solid var(--peach-dark);">
+            <div class="service-icon peach" style="width:40px;height:40px;font-size:1rem;margin-bottom:0.75rem;">📷</div>
+            <h4 style="font-size:0.9rem;">CCTV Surveillance</h4>
+            <p style="font-size:0.8rem;">End-to-end design, installation and monitoring of surveillance systems.</p>
+          </div>
+          <div class="card" style="padding:1.25rem;border-top:3px solid var(--peach-dark);">
+            <div class="service-icon orange" style="width:40px;height:40px;font-size:1rem;margin-bottom:0.75rem;">🔐</div>
+            <h4 style="font-size:0.9rem;">Access Control</h4>
+            <p style="font-size:0.8rem;">Biometric, card-based and cloud-managed systems for your facilities.</p>
+          </div>
+        </div>
+        <a href="{{ url_for('contact') }}" class="btn btn-navy btn-arrow nav-link-internal">Get Security Assessment</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div style="background:linear-gradient(90deg,transparent,var(--peach),transparent);height:1px;opacity:0.3;"></div>
+
+<!-- ===== HARDWARE ===== -->
+<section class="section section-alt" id="hardware">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;">
+      <div class="reveal-left">
+        <span class="section-eyebrow">Hardware Sales &amp; Rentals</span>
+        <h2>New &amp; Rental Hardware</h2>
+        <p style="margin-bottom:1.5rem;">Desktops, laptops, servers, and accessories available for purchase or on flexible rental terms. Emergency backup systems provided so your business never halts.</p>
+        <div class="grid-2 stagger" style="margin-bottom:1.5rem;">
+          <div class="card" style="padding:1.1rem;"><h4 style="font-size:0.9rem;">🛒 Purchase</h4><p style="font-size:0.8rem;">Latest hardware from trusted vendors with installation included.</p></div>
+          <div class="card" style="padding:1.1rem;"><h4 style="font-size:0.9rem;">📅 Flexible Rental</h4><p style="font-size:0.8rem;">Short and long-term rental for projects, events, or upgrades.</p></div>
+          <div class="card" style="padding:1.1rem;"><h4 style="font-size:0.9rem;">🔄 Emergency Backup</h4><p style="font-size:0.8rem;">Backup systems when primary hardware requires repair.</p></div>
+          <div class="card" style="padding:1.1rem;"><h4 style="font-size:0.9rem;">⚙️ Setup &amp; Config</h4><p style="font-size:0.8rem;">Delivered, set up and configured — ready from day one.</p></div>
+        </div>
+        <a href="{{ url_for('contact') }}" class="btn btn-navy btn-arrow nav-link-internal">Get Hardware Quote</a>
+      </div>
+
+      <!-- VIDEO -->
+      <div class="reveal-right">
+        <div class="video-section" id="video-hardware" onclick="playVideo('video-hardware','hardware-player')">
+          <div class="video-placeholder" id="placeholder-hardware" style="background-image:url('{{ url_for('static', filename='images/services/thumb/hardware.jpg') }}');">
+            <div class="video-play-btn">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <div class="video-placeholder-title">New &amp; Rental Hardware</div>
+            <div class="video-placeholder-sub">30 sec explainer video</div>
+          </div>
+          <video id="hardware-player" style="display:none;" controls>
+            <source src="{{ url_for('static', filename='videos/hardware.mp4') }}" type="video/mp4"/>
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div style="background:linear-gradient(90deg,transparent,var(--peach),transparent);height:1px;opacity:0.3;"></div>
+
+<!-- ===== INSURANCE ===== -->
+<section class="section" id="insurance">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;">
+
+      <!-- VIDEO LEFT -->
+      <div class="reveal-left">
+        <div class="video-section" id="video-insurance" onclick="playVideo('video-insurance','insurance-player')">
+          <div class="video-placeholder" id="placeholder-insurance" style="background-image:url('{{ url_for('static', filename='images/services/thumb/insurance.jpg') }}');">
+            <div class="video-play-btn">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <div class="video-placeholder-title">Corporate &amp; Individual Insurance</div>
+            <div class="video-placeholder-sub">30 sec explainer video</div>
+          </div>
+          <video id="insurance-player" style="display:none;" controls>
+            <source src="{{ url_for('static', filename='videos/insurance.mp4') }}" type="video/mp4"/>
+          </video>
+        </div>
+      </div>
+
+      <div class="reveal-right">
+        <span class="section-eyebrow">Insurance Services</span>
+        <h2>Corporate &amp; Individual Insurance</h2>
+        <p style="margin-bottom:1.5rem;">Protecting your business, assets, and people with tailored insurance solutions — a unique offering that sets Total Tech Serve apart as a truly one-touch partner.</p>
+        <div class="card" style="background:var(--navy-dark);border-color:rgba(247,169,85,0.15);margin-bottom:1.5rem;">
+          <h4 style="color:var(--peach);margin-bottom:1.25rem;">We can help with</h4>
+          <ul style="list-style:none;">
+            {% for item in ['Corporate Insurance Policies','Equipment & Asset Insurance','Employee Group Insurance','Cyber Liability Insurance','Business Interruption Cover','Individual & Family Plans'] %}
+            <li style="padding:0.55rem 0;border-bottom:1px solid rgba(255,255,255,0.06);color:rgba(255,255,255,0.75);font-size:0.88rem;display:flex;align-items:center;gap:0.6rem;"><span style="color:var(--peach);font-weight:700;">✓</span> {{ item }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        <a href="{{ url_for('contact') }}" class="btn btn-primary btn-arrow nav-link-internal">Talk to Our Team</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band" style="background:linear-gradient(135deg,var(--navy-dark),var(--navy));">
+  <div class="container reveal">
+    <h2 style="color:white;margin-bottom:0.75rem;">Not Sure Which Service You Need?</h2>
+    <p style="color:rgba(255,255,255,0.6);margin-bottom:2rem;">Our team will assess your requirements and recommend the right plan — at no cost.</p>
+    <a href="{{ url_for('contact') }}" class="btn btn-primary btn-arrow nav-link-internal">Request a Free Assessment</a>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+function playVideo(sectionId, playerId) {
+  const placeholder = document.getElementById('placeholder-' + sectionId.replace('video-',''));
+  const player      = document.getElementById(playerId);
+
+  player.style.display = 'block';
+  player.play().then(() => {
+    if (placeholder) placeholder.style.display = 'none';
+  }).catch(() => {
+    player.style.display = 'none';
+    if (placeholder) {
+      placeholder.querySelector('.video-placeholder-sub').textContent = '⚠️ Video not uploaded yet';
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const videos = [
+    { player: 'amc-player',       placeholder: 'placeholder-amc' },
+    { player: 'repair-player',    placeholder: 'placeholder-repair' },
+    { player: 'network-player',   placeholder: 'placeholder-network' },
+    { player: 'hardware-player',  placeholder: 'placeholder-hardware' },
+    { player: 'insurance-player', placeholder: 'placeholder-insurance' },
+  ];
+
+  videos.forEach(({ player, placeholder }) => {
+    const v  = document.getElementById(player);
+    const ph = document.getElementById(placeholder);
+    if (!v || !ph) return;
+
+    v.addEventListener('canplay', () => {
+      ph.querySelector('.video-placeholder-sub').textContent = '▶ Click to play';
+      ph.querySelector('.video-placeholder-sub').style.color = '#14a098';
+    });
+
+    v.addEventListener('error', () => {
+      ph.querySelector('.video-placeholder-sub').textContent = '📁 Upload video to activate';
+    });
+  });
+});
+</script>
+{% endblock %}

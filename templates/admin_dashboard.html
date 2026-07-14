@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard — Total Tech Serve</title>
+  <link rel="icon" href="/static/images/favicon.ico"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Inter',sans-serif;background:#f4f1ee;min-height:100vh;display:flex;}
+    .sidebar{width:240px;background:#12355b;min-height:100vh;position:fixed;top:0;left:0;z-index:100;display:flex;flex-direction:column;}
+    .sidebar-logo{padding:1.5rem 1.25rem;border-bottom:1px solid rgba(255,255,255,0.08);}
+    .sidebar-logo img{height:50px;width:auto;object-fit:contain;}
+    .sidebar-label{color:rgba(255,255,255,0.35);font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;padding:1.25rem 1.25rem 0.5rem;}
+    .sidebar-nav{list-style:none;padding:0 0.75rem;}
+    .sidebar-nav li{margin-bottom:0.2rem;}
+    .sidebar-nav a{display:flex;align-items:center;gap:0.75rem;padding:0.65rem 0.85rem;border-radius:8px;color:rgba(255,255,255,0.6);text-decoration:none;font-size:0.85rem;font-weight:500;transition:all 0.2s;}
+    .sidebar-nav a:hover{background:rgba(255,255,255,0.08);color:white;}
+    .sidebar-nav a.active{background:rgba(247,169,85,0.15);color:#f7a955;border-left:3px solid #f7a955;}
+    .sidebar-bottom{margin-top:auto;padding:1rem 0.75rem;border-top:1px solid rgba(255,255,255,0.08);}
+    .admin-info{display:flex;align-items:center;gap:0.65rem;padding:0.6rem 0.85rem;margin-bottom:0.25rem;}
+    .admin-av{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#f7a955,#f28c28);display:flex;align-items:center;justify-content:center;font-size:0.85rem;font-weight:700;color:#12355b;flex-shrink:0;}
+    .admin-name{color:white;font-weight:600;font-size:0.82rem;}
+    .admin-role{color:rgba(255,255,255,0.4);font-size:0.7rem;}
+    .logout-btn{display:flex;align-items:center;gap:0.5rem;padding:0.6rem 0.85rem;color:rgba(255,100,100,0.75);text-decoration:none;font-size:0.82rem;border-radius:8px;transition:all 0.2s;}
+    .logout-btn:hover{background:rgba(255,100,100,0.1);color:#ff6464;}
+    .main{margin-left:240px;flex:1;padding:2rem;}
+    .page-hdr{margin-bottom:2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+    .page-hdr h1{font-size:1.55rem;font-weight:800;color:#12355b;}
+    .page-hdr p{color:#999;font-size:0.82rem;margin-top:0.2rem;}
+    .date-pill{background:white;border:1px solid #e0d8d0;padding:0.35rem 1rem;border-radius:20px;font-size:0.75rem;color:#888;}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;margin-bottom:2rem;}
+    .sc{background:white;border-radius:14px;padding:1.4rem;border:1px solid #f0ebe5;box-shadow:0 2px 10px rgba(18,53,91,0.06);position:relative;overflow:hidden;}
+    .sc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+    .sc.blue::before{background:linear-gradient(90deg,#3b82f6,#60a5fa);}
+    .sc.peach::before{background:linear-gradient(90deg,#f28c28,#f7a955);}
+    .sc.green::before{background:linear-gradient(90deg,#22c55e,#4ade80);}
+    .sc.navy::before{background:linear-gradient(90deg,#12355b,#1a3a5f);}
+    .sc-icon{position:absolute;top:1.1rem;right:1.1rem;font-size:1.6rem;opacity:0.12;}
+    .sc-lbl{font-size:0.7rem;font-weight:700;color:#bbb;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.4rem;}
+    .sc-val{font-size:2.4rem;font-weight:800;color:#12355b;line-height:1;}
+    .sc-sub{font-size:0.72rem;color:#bbb;margin-top:0.35rem;}
+    .grid2{display:grid;grid-template-columns:1.6fr 1fr;gap:1.5rem;margin-bottom:1.5rem;}
+    .card{background:white;border-radius:14px;padding:1.5rem;border:1px solid #f0ebe5;box-shadow:0 2px 10px rgba(18,53,91,0.06);}
+    .card-ttl{font-size:0.85rem;font-weight:700;color:#12355b;margin-bottom:1.25rem;display:flex;align-items:center;gap:0.4rem;}
+    .card-ttl a{margin-left:auto;font-size:0.72rem;color:#f28c28;text-decoration:none;}
+    .bar-chart{display:flex;align-items:flex-end;gap:0.5rem;height:130px;}
+    .bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:0.25rem;}
+    .bar{width:100%;border-radius:5px 5px 0 0;background:linear-gradient(180deg,#f7a955,#f28c28);min-height:4px;transition:height 0.4s ease;}
+    .bar-lbl{font-size:0.58rem;color:#bbb;white-space:nowrap;}
+    .bar-v{font-size:0.62rem;color:#f28c28;font-weight:700;}
+    .pg-row{display:flex;align-items:center;gap:0.6rem;margin-bottom:0.75rem;}
+    .pg-name{font-size:0.8rem;color:#12355b;font-weight:500;width:75px;flex-shrink:0;text-transform:capitalize;}
+    .pg-track{flex:1;background:#f4f1ee;border-radius:20px;height:7px;overflow:hidden;}
+    .pg-bar{height:100%;border-radius:20px;background:linear-gradient(90deg,#12355b,#1a3a5f);}
+    .pg-cnt{font-size:0.75rem;font-weight:700;color:#12355b;width:30px;text-align:right;flex-shrink:0;}
+    table{width:100%;border-collapse:collapse;}
+    th{font-size:0.68rem;font-weight:700;color:#bbb;text-transform:uppercase;letter-spacing:0.08em;padding:0 0.75rem 0.75rem;text-align:left;border-bottom:1px solid #f0ebe5;}
+    td{padding:0.7rem 0.75rem;font-size:0.8rem;color:#12355b;border-bottom:1px solid #faf7f4;vertical-align:middle;}
+    tr:last-child td{border-bottom:none;}
+    tr:hover td{background:#fdf9f6;}
+    .sp{display:inline-flex;padding:0.12rem 0.5rem;border-radius:20px;font-size:0.66rem;font-weight:700;}
+    .s-new{background:#e8f4ff;color:#1a5fa8;}
+    .s-contacted{background:#fff3e0;color:#a05e00;}
+    .s-proposal{background:#eef2f6;color:#c05000;}
+    .s-closed{background:#e8f5e9;color:#2e7d32;}
+    .s-lost{background:#fee2e2;color:#dc2626;}
+    .svc-row{display:flex;align-items:center;justify-content:space-between;padding:0.55rem 0;border-bottom:1px solid #faf7f4;font-size:0.8rem;}
+    .svc-row:last-child{border-bottom:none;}
+    .svc-cnt{background:#eef2f6;color:#f28c28;border-radius:20px;padding:0.12rem 0.55rem;font-size:0.7rem;font-weight:700;}
+    .qa{display:grid;grid-template-columns:1fr 1fr;gap:0.65rem;}
+    .qa a{display:flex;align-items:center;gap:0.5rem;padding:0.75rem 0.9rem;border-radius:9px;text-decoration:none;font-size:0.78rem;font-weight:600;transition:all 0.2s;border:1.5px solid;}
+    .qa a:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.1);}
+    .qa .navy{background:#12355b;color:white;border-color:#12355b;}
+    .qa .peach{background:#eef2f6;color:#f28c28;border-color:#fdd0b0;}
+    .qa .green{background:#e8f5e9;color:#2e7d32;border-color:#a5d6a7;}
+    .qa .blue{background:#e8f4ff;color:#1a5fa8;border-color:#90caf9;}
+    .no-data{text-align:center;padding:2rem;color:#bbb;font-size:0.82rem;}
+    .np-overlay{position:fixed;inset:0;background:rgba(18,53,91,0.55);backdrop-filter:blur(3px);z-index:2000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s ease;}
+    .np-overlay.show{opacity:1;pointer-events:auto;}
+    .np-card{background:white;border-radius:18px;padding:2rem 2.2rem;max-width:380px;width:90%;text-align:center;box-shadow:0 30px 80px rgba(18,53,91,0.35);transform:translateY(16px) scale(0.96);transition:transform 0.3s ease;}
+    .np-overlay.show .np-card{transform:translateY(0) scale(1);}
+    .np-icon{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#f7a955,#f28c28);display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 1rem;}
+    .np-card h3{font-size:1.15rem;color:#12355b;margin-bottom:0.5rem;}
+    .np-card p{font-size:0.85rem;color:#888;margin-bottom:1.4rem;}
+    .np-actions{display:flex;gap:0.75rem;justify-content:center;}
+    .np-actions a,.np-actions button{border:none;border-radius:9px;padding:0.65rem 1.2rem;font-size:0.82rem;font-weight:700;cursor:pointer;text-decoration:none;}
+    .np-actions .np-view{background:#12355b;color:white;}
+    .np-actions .np-dismiss{background:#f4f1ee;color:#888;}
+    @media(max-width:900px){.sidebar{width:100%;position:relative;min-height:auto}.main{margin-left:0}.stats{grid-template-columns:1fr 1fr}.grid2{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<div class="sidebar">
+  <div class="sidebar-logo"><img src="/static/images/logo-white.png" alt="Total Tech Serve"/></div>
+  <div class="sidebar-label">Main Menu</div>
+  <ul class="sidebar-nav">
+    <li><a href="/admin/dashboard" class="active">📊 Dashboard</a></li>
+    <li><a href="/admin/crm">🗂️ CRM Pipeline</a></li>
+    <li><a href="/admin/contacts">📋 All Contacts</a></li>
+  </ul>
+  <div class="sidebar-label">Website</div>
+  <ul class="sidebar-nav">
+    <li><a href="/" target="_blank">🏠 View Website</a></li>
+    <li><a href="/contact" target="_blank">📞 Contact Page</a></li>
+    <li><a href="/services" target="_blank">🛠️ Services</a></li>
+  </ul>
+  <div class="sidebar-bottom">
+    <div class="admin-info">
+      <div class="admin-av">{{ admin_user[0].upper() }}</div>
+      <div><div class="admin-name">{{ admin_user }}</div><div class="admin-role">Administrator</div></div>
+    </div>
+    <a href="/admin/logout" class="logout-btn">🚪 Logout</a>
+  </div>
+</div>
+
+<div class="main">
+  <div class="page-hdr">
+    <div>
+      <h1>Admin Dashboard</h1>
+      <p>Welcome back, {{ admin_user }}! Here's your business overview.</p>
+    </div>
+    <div class="date-pill">📅 {{ now.strftime('%d %b %Y, %I:%M %p') }}</div>
+  </div>
+
+  {% if recent_activity %}
+  <div class="card" style="margin-bottom:1.5rem;">
+    <div class="card-ttl">🕓 Recently Updated by Admin</div>
+    {% for a in recent_activity %}
+    <div class="svc-row">
+      <span style="color:#12355b;">
+        <strong style="color:#f28c28;">{{ admin_user }}</strong>
+        &nbsp;{{ a.action }}{% if a.contact %} — {{ a.contact.full_name }}{% endif %}
+      </span>
+      <span style="color:#bbb;font-size:0.7rem;white-space:nowrap;">{{ a.created_at.strftime('%d %b, %I:%M %p') }}</span>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="sc blue"><div class="sc-icon">📥</div><div class="sc-lbl">Total Leads</div><div class="sc-val">{{ total_leads }}</div><div class="sc-sub">All time enquiries</div></div>
+    <div class="sc peach"><div class="sc-icon">🔔</div><div class="sc-lbl">New Leads</div><div class="sc-val">{{ new_leads }}</div><div class="sc-sub">Today: {{ today_leads }} new</div></div>
+    <div class="sc green"><div class="sc-icon">🏆</div><div class="sc-lbl">Won Deals</div><div class="sc-val">{{ won_leads }}</div><div class="sc-sub">Successfully closed</div></div>
+    <div class="sc navy"><div class="sc-icon">👁️</div><div class="sc-lbl">Total Views</div><div class="sc-val">{{ total_views }}</div><div class="sc-sub">Today: {{ today_views }} views</div></div>
+  </div>
+
+  <!-- CHARTS -->
+  <div class="grid2">
+    <div class="card">
+      <div class="card-ttl">📈 Page Views — Last 7 Days</div>
+      {% if weekly_views %}
+      {% set max_v = weekly_views|map(attribute='cnt')|max %}
+      <div class="bar-chart">
+        {% for r in weekly_views %}
+        <div class="bar-wrap">
+          <div class="bar-v">{{ r.cnt }}</div>
+          <div class="bar" style="height:{{ [((r.cnt/max_v)*110)|int,4]|max }}px;"></div>
+          <div class="bar-lbl">{{ r.day.strftime('%d %b') if r.day else r.day }}</div>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}<div class="no-data">No view data yet. Views appear once visitors come to your site.</div>{% endif %}
+    </div>
+    <div class="card">
+      <div class="card-ttl">📄 Views by Page</div>
+      {% if page_stats %}
+      {% set max_p = page_stats|map(attribute='cnt')|max %}
+      {% for r in page_stats %}
+      <div class="pg-row">
+        <div class="pg-name">{{ r.page }}</div>
+        <div class="pg-track"><div class="pg-bar" style="width:{{ ((r.cnt/max_p)*100)|int }}%;"></div></div>
+        <div class="pg-cnt">{{ r.cnt }}</div>
+      </div>
+      {% endfor %}
+      {% else %}<div class="no-data">No data yet.</div>{% endif %}
+    </div>
+  </div>
+
+  <!-- BOTTOM -->
+  <div class="grid2">
+    <div class="card">
+      <div class="card-ttl">📥 Recent Leads <a href="/admin/crm">View all →</a></div>
+      {% if recent_leads %}
+      <table>
+        <thead><tr><th>Name</th><th>Phone</th><th>Service</th><th>Status</th><th>Date</th></tr></thead>
+        <tbody>
+          {% for l in recent_leads %}
+          <tr>
+            <td><strong>{{ l.full_name }}</strong><br/><span style="color:#bbb;font-size:0.7rem;">{{ l.email }}</span></td>
+            <td>{{ l.phone }}</td>
+            <td style="color:#888;font-size:0.75rem;">{{ (l.service_interest or '—')[:18] }}</td>
+            <td><span class="sp s-{{ l.status }}">{{ l.status }}</span></td>
+            <td style="color:#bbb;font-size:0.72rem;">{{ l.submitted_at.strftime('%d %b') }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}<div class="no-data">No leads yet. Share your website!</div>{% endif %}
+    </div>
+    <div style="display:flex;flex-direction:column;gap:1.5rem;">
+      <div class="card">
+        <div class="card-ttl">🛠️ Top Services Enquired</div>
+        {% if service_stats %}
+        {% for r in service_stats %}
+        <div class="svc-row"><span style="color:#12355b;font-weight:500;">{{ (r.service_interest or '—')[:22] }}</span><span class="svc-cnt">{{ r.cnt }}</span></div>
+        {% endfor %}
+        {% else %}<div class="no-data">No data yet.</div>{% endif %}
+      </div>
+      <div class="card">
+        <div class="card-ttl">⚡ Quick Actions</div>
+        <div class="qa">
+          <a href="/admin/crm" class="navy">🗂️ Open CRM</a>
+          <a href="/admin/contacts" class="peach">📋 Contacts</a>
+          <a href="/contact" target="_blank" class="blue">📞 Contact Page</a>
+          <a href="/" target="_blank" class="green">🌐 View Site</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% if new_leads_popup and new_leads_popup > 0 %}
+<div class="np-overlay" id="npOverlay">
+  <div class="np-card">
+    <div class="np-icon">🔔</div>
+    <h3>You've got {{ new_leads_popup }} new {{ 'lead' if new_leads_popup == 1 else 'leads' }}!</h3>
+    <p>{{ new_leads_popup }} new user{{ '' if new_leads_popup == 1 else 's' }} enquired about our services since your last visit.</p>
+    <div class="np-actions">
+      <a href="/admin/crm" class="np-view">View in CRM</a>
+      <button class="np-dismiss" onclick="document.getElementById('npOverlay').classList.remove('show')">Dismiss</button>
+    </div>
+  </div>
+</div>
+<script>window.addEventListener('DOMContentLoaded',()=>{document.getElementById('npOverlay').classList.add('show');});</script>
+{% endif %}
+<script>setTimeout(()=>location.reload(),60000);</script>
+</body>
+</html>

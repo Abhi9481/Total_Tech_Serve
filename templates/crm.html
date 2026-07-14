@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>CRM Pipeline — Total Tech Serve</title>
+  <link rel="icon" href="/static/images/favicon.ico"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Inter',sans-serif;background:#f4f1ee;min-height:100vh;display:flex;}
+    .sidebar{width:240px;background:#12355b;min-height:100vh;position:fixed;top:0;left:0;z-index:100;display:flex;flex-direction:column;}
+    .sidebar-logo{padding:1.5rem 1.25rem;border-bottom:1px solid rgba(255,255,255,0.08);}
+    .sidebar-logo img{height:50px;width:auto;object-fit:contain;}
+    .sidebar-label{color:rgba(255,255,255,0.35);font-size:0.65rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;padding:1.25rem 1.25rem 0.5rem;}
+    .sidebar-nav{list-style:none;padding:0 0.75rem;}
+    .sidebar-nav li{margin-bottom:0.2rem;}
+    .sidebar-nav a{display:flex;align-items:center;gap:0.75rem;padding:0.65rem 0.85rem;border-radius:8px;color:rgba(255,255,255,0.6);text-decoration:none;font-size:0.85rem;font-weight:500;transition:all 0.2s;}
+    .sidebar-nav a:hover{background:rgba(255,255,255,0.08);color:white;}
+    .sidebar-nav a.active{background:rgba(247,169,85,0.15);color:#f7a955;border-left:3px solid #f7a955;}
+    .sidebar-bottom{margin-top:auto;padding:1rem 0.75rem;border-top:1px solid rgba(255,255,255,0.08);}
+    .logout-btn{display:flex;align-items:center;gap:0.5rem;padding:0.6rem 0.85rem;color:rgba(255,100,100,0.75);text-decoration:none;font-size:0.82rem;border-radius:8px;transition:all 0.2s;}
+    .logout-btn:hover{background:rgba(255,100,100,0.1);color:#ff6464;}
+    .main{margin-left:240px;flex:1;padding:2rem;min-height:100vh;}
+    .page-hdr{margin-bottom:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+    .page-hdr h1{font-size:1.5rem;font-weight:800;color:#12355b;}
+    .page-hdr p{color:#aaa;font-size:0.8rem;margin-top:0.2rem;}
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem;}
+    .sc{background:white;border-radius:12px;padding:1.1rem;text-align:center;border:1px solid #f0ebe5;box-shadow:0 2px 8px rgba(18,53,91,0.05);position:relative;overflow:hidden;}
+    .sc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+    .sc.blue::before{background:#3b82f6}.sc.peach::before{background:#f28c28}.sc.orange::before{background:#e05a20}.sc.green::before{background:#22c55e}
+    .sc-num{font-size:1.8rem;font-weight:800;color:#12355b;line-height:1;}
+    .sc-lbl{font-size:0.68rem;color:#bbb;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-top:0.25rem;}
+    .toolbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:0.75rem;}
+    .toolbar h3{font-size:1rem;font-weight:700;color:#12355b;}
+    .btn{display:inline-flex;align-items:center;gap:0.4rem;padding:0.5rem 1rem;border-radius:8px;font-weight:600;font-size:0.8rem;cursor:pointer;border:none;text-decoration:none;transition:all 0.2s;font-family:inherit;}
+    .btn-primary{background:#12355b;color:white;} .btn-primary:hover{background:#1a3a5f;}
+    .btn-peach{background:#eef2f6;color:#f28c28;border:1.5px solid #fdd0b0;} .btn-peach:hover{background:#f28c28;color:white;}
+    .btn-green{background:#25D366;color:white;} .btn-red{background:#fee2e2;color:#dc2626;border:1px solid #fca5a5;}
+    .crm-pipeline{display:flex;gap:1rem;overflow-x:auto;padding-bottom:1rem;}
+    .crm-col{min-width:215px;background:white;border-radius:12px;padding:1rem;flex:1;border:1px solid #f0ebe5;box-shadow:0 2px 8px rgba(18,53,91,0.05);}
+    .col-hdr{font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.85rem;padding-bottom:0.6rem;border-bottom:2px solid;}
+    .col-hdr.new{color:#3b82f6;border-color:#3b82f6}
+    .col-hdr.contacted{color:#f28c28;border-color:#f28c28}
+    .col-hdr.proposal{color:#e05a20;border-color:#e05a20}
+    .col-hdr.won{color:#22c55e;border-color:#22c55e}
+    .col-hdr.lost{color:#ef4444;border-color:#ef4444}
+    .lead-card{background:#fdf9f6;border-radius:8px;padding:0.8rem;margin-bottom:0.6rem;border-left:3px solid #f7a955;cursor:pointer;transition:all 0.2s;box-shadow:0 1px 4px rgba(18,53,91,0.05);}
+    .lead-card:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(18,53,91,0.1);background:white;}
+    .lc-name{font-weight:700;font-size:0.83rem;color:#12355b;}
+    .lc-co{font-size:0.7rem;color:#bbb;margin-top:0.12rem;}
+    .lc-meta{display:flex;justify-content:space-between;align-items:center;margin-top:0.45rem;}
+    .lc-svc{font-size:0.64rem;background:#eef2f6;color:#f28c28;padding:0.1rem 0.38rem;border-radius:7px;}
+    .lc-dt{font-size:0.64rem;color:#ccc;}
+    .empty{text-align:center;padding:1.5rem 0;color:#ccc;font-size:0.76rem;}
+    /* MODAL */
+    .mo{display:none;position:fixed;inset:0;background:rgba(18,53,91,0.55);z-index:9999;align-items:center;justify-content:center;backdrop-filter:blur(4px);}
+    .mb{background:white;border-radius:18px;padding:1.75rem;max-width:540px;width:95%;box-shadow:0 24px 80px rgba(0,0,0,0.25);position:relative;max-height:92vh;overflow-y:auto;}
+    .mc{position:absolute;top:1rem;right:1rem;background:none;border:none;font-size:1.2rem;cursor:pointer;color:#bbb;} .mc:hover{color:#12355b;}
+    .mt{font-size:1.05rem;font-weight:800;color:#12355b;}
+    .ms{font-size:0.78rem;color:#bbb;margin-top:0.15rem;margin-bottom:1.25rem;}
+    .dg{display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;margin-bottom:1rem;}
+    .db{background:#fdf9f6;border-radius:8px;padding:0.65rem;}
+    .db .l{font-size:0.62rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#bbb;margin-bottom:0.2rem;}
+    .db .v{font-size:0.82rem;font-weight:600;color:#12355b;word-break:break-all;}
+    .msgb{background:#eef2f6;border-left:3px solid #f28c28;border-radius:0 8px 8px 0;padding:0.8rem 1rem;margin-bottom:1rem;}
+    .msgb .l{font-size:0.62rem;font-weight:700;text-transform:uppercase;color:#f28c28;margin-bottom:0.35rem;}
+    .msgb .v{font-size:0.82rem;color:#5a3020;line-height:1.6;}
+    .lc-wrap{background:#eef2f6;border-radius:8px;padding:0.65rem;margin-bottom:0.85rem;border-left:3px solid #f28c28;display:none;}
+    .fr{display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;margin-bottom:0.6rem;}
+    .fg{margin-bottom:0.6rem;}
+    .fg label{display:block;font-size:0.72rem;font-weight:600;color:#12355b;margin-bottom:0.22rem;}
+    .fg input,.fg select,.fg textarea{width:100%;padding:0.5rem 0.75rem;border:1.5px solid #e0d8d0;border-radius:8px;font-family:inherit;font-size:0.82rem;outline:none;transition:border-color 0.2s;}
+    .fg input:focus,.fg select:focus,.fg textarea:focus{border-color:#12355b;}
+    .fg textarea{resize:vertical;min-height:75px;}
+    .ar{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1rem;}
+    .hs{border-top:1px solid #f0ebe5;padding-top:0.85rem;}
+    .ht{font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#bbb;margin-bottom:0.6rem;}
+    .hi{display:flex;gap:0.5rem;margin-bottom:0.4rem;padding:0.45rem;background:#fdf9f6;border-radius:7px;}
+    .ha{font-size:0.72rem;font-weight:700;color:#12355b;}
+    .hd{font-size:0.7rem;color:#888;}
+    .htime{font-size:0.65rem;color:#ccc;margin-top:0.08rem;}
+    .pb{display:inline-flex;padding:0.12rem 0.5rem;border-radius:20px;font-size:0.66rem;font-weight:700;}
+    .ph{background:#fee2e2;color:#dc2626}.pn{background:#f0f0f0;color:#666}
+    .sb{background:#f0ebe5;color:#aaa;display:inline-flex;padding:0.12rem 0.5rem;border-radius:20px;font-size:0.66rem;font-weight:600;}
+    @media(max-width:900px){.sidebar{width:100%;position:relative;min-height:auto}.main{margin-left:0}.stats{grid-template-columns:1fr 1fr}.dg,.fr{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<div class="sidebar">
+  <div class="sidebar-logo"><img src="/static/images/logo-white.png" alt="Total Tech Serve"/></div>
+  <div class="sidebar-label">Main Menu</div>
+  <ul class="sidebar-nav">
+    <li><a href="/admin/dashboard">📊 Dashboard</a></li>
+    <li><a href="/admin/crm" class="active">🗂️ CRM Pipeline</a></li>
+    <li><a href="/admin/contacts">📋 All Contacts</a></li>
+  </ul>
+  <div class="sidebar-label">Website</div>
+  <ul class="sidebar-nav">
+    <li><a href="/" target="_blank">🏠 View Website</a></li>
+    <li><a href="/contact" target="_blank">📞 Contact Page</a></li>
+  </ul>
+  <div class="sidebar-bottom">
+    <a href="/admin/logout" class="logout-btn">🚪 Logout</a>
+  </div>
+</div>
+
+<div class="main">
+  <div class="page-hdr">
+    <div><h1>CRM Pipeline</h1><p>Track and manage all leads from enquiry to close.</p></div>
+    <div style="display:flex;gap:0.6rem;">
+      <button class="btn btn-peach" onclick="openAdd()">➕ Add Lead</button>
+      <button class="btn btn-primary" onclick="load()">🔄 Refresh</button>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="sc blue"><div class="sc-num" id="c-new">0</div><div class="sc-lbl">New</div></div>
+    <div class="sc peach"><div class="sc-num" id="c-contacted">0</div><div class="sc-lbl">Contacted</div></div>
+    <div class="sc orange"><div class="sc-num" id="c-proposal">0</div><div class="sc-lbl">Proposal</div></div>
+    <div class="sc green"><div class="sc-num" id="c-won">0</div><div class="sc-lbl">Won</div></div>
+  </div>
+
+  <div class="crm-pipeline" id="pipeline">
+    <div class="crm-col" id="col-new"><div class="col-hdr new">🔵 New <span id="b-new"></span></div></div>
+    <div class="crm-col" id="col-contacted"><div class="col-hdr contacted">🟡 Contacted <span id="b-contacted"></span></div></div>
+    <div class="crm-col" id="col-proposal"><div class="col-hdr proposal">🟠 Proposal <span id="b-proposal"></span></div></div>
+    <div class="crm-col" id="col-closed"><div class="col-hdr won">🟢 Won <span id="b-won"></span></div></div>
+    <div class="crm-col" id="col-lost"><div class="col-hdr lost">🔴 Lost <span id="b-lost"></span></div></div>
+  </div>
+</div>
+
+<!-- DETAIL MODAL -->
+<div class="mo" id="detailModal">
+  <div class="mb">
+    <button class="mc" onclick="closeDetail()">✕</button>
+    <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.2rem;">
+      <div class="mt" id="m-name"></div>
+      <span id="m-pb" class="pb"></span>
+      <span id="m-sb" class="sb"></span>
+    </div>
+    <div class="ms" id="m-co"></div>
+    <div class="dg">
+      <div class="db"><div class="l">Email</div><div class="v" id="m-email"></div></div>
+      <div class="db"><div class="l">Phone</div><div class="v" id="m-phone"></div></div>
+      <div class="db"><div class="l">City</div><div class="v" id="m-city"></div></div>
+      <div class="db"><div class="l">Service</div><div class="v" id="m-svc"></div></div>
+    </div>
+    <div class="msgb"><div class="l">Message</div><div class="v" id="m-msg"></div></div>
+    <div class="lc-wrap" id="m-lc-wrap"><div style="font-size:0.65rem;font-weight:700;color:#f28c28;text-transform:uppercase;">Last Contacted</div><div style="font-size:0.82rem;font-weight:600;color:#12355b;margin-top:0.2rem;" id="m-lc"></div></div>
+    <div class="fr">
+      <div class="fg"><label>Move to Status</label><select id="m-status"><option value="new">🔵 New</option><option value="contacted">🟡 Contacted</option><option value="proposal">🟠 Proposal Sent</option><option value="closed">🟢 Won</option><option value="lost">🔴 Lost</option></select></div>
+      <div class="fg"><label>Priority</label><select id="m-priority"><option value="normal">Normal</option><option value="high">🔴 High</option><option value="low">⬇️ Low</option></select></div>
+    </div>
+    <div class="fg"><label>Follow-up Date</label><input type="date" id="m-fu"/></div>
+    <div class="fg"><label>Call Notes</label><textarea id="m-notes" placeholder="What was discussed..."></textarea></div>
+    <div class="ar">
+      <button onclick="save()" class="btn btn-primary" style="flex:1;">💾 Save</button>
+      <a id="m-wa" href="#" target="_blank" class="btn btn-green" onclick="markC()">💬 WhatsApp</a>
+      <a id="m-em" href="#" class="btn btn-primary" style="background:#EA4335;" onclick="markC()">✉️ Email</a>
+      <button onclick="del()" class="btn btn-red">🗑️</button>
+    </div>
+    <div class="hs"><div class="ht">📋 Activity History</div><div id="m-hist"></div></div>
+  </div>
+</div>
+
+<!-- ADD MODAL -->
+<div class="mo" id="addModal">
+  <div class="mb">
+    <button class="mc" onclick="closeAdd()">✕</button>
+    <div class="mt">➕ Add Lead Manually</div>
+    <div class="ms">For leads you met offline, via referral, or phone call.</div>
+    <div class="fr">
+      <div class="fg"><label>Full Name *</label><input type="text" id="a-name" placeholder="Rajesh Kumar"/></div>
+      <div class="fg"><label>Phone *</label><input type="tel" id="a-phone" placeholder="+91 XXXXX XXXXX"/></div>
+    </div>
+    <div class="fr">
+      <div class="fg"><label>Email</label><input type="email" id="a-email" placeholder="email@company.com"/></div>
+      <div class="fg"><label>Company</label><input type="text" id="a-co" placeholder="Company name"/></div>
+    </div>
+    <div class="fr">
+      <div class="fg"><label>City</label><input type="text" id="a-city" placeholder="Bengaluru"/></div>
+      <div class="fg"><label>Service Interest</label>
+        <select id="a-svc"><option value="">— Select —</option><option>IT AMC</option><option>Repair & Diagnostics</option><option>Network Setup</option><option>CCTV Surveillance</option><option>Access Control</option><option>Hardware Sales</option><option>Hardware Rental</option><option>Insurance Services</option><option>Multiple Services</option></select>
+      </div>
+    </div>
+    <div class="fr">
+      <div class="fg"><label>Status</label><select id="a-status"><option value="new">🔵 New</option><option value="contacted">🟡 Contacted</option><option value="proposal">🟠 Proposal</option></select></div>
+      <div class="fg"><label>Priority</label><select id="a-pri"><option value="normal">Normal</option><option value="high">🔴 High</option><option value="low">⬇️ Low</option></select></div>
+    </div>
+    <div class="fg"><label>Source</label><select id="a-src"><option>Manual Entry</option><option>Phone Call</option><option>WhatsApp</option><option>Referral</option><option>Site Visit</option><option>Social Media</option><option>Exhibition / Event</option></select></div>
+    <div class="fg"><label>Notes</label><textarea id="a-notes" placeholder="What was discussed?"></textarea></div>
+    <button onclick="saveAdd()" class="btn btn-primary" style="width:100%;justify-content:center;padding:0.75rem;">➕ Add to CRM</button>
+  </div>
+</div>
+
+<script>
+let contacts=[],activeId=null;
+const colors={new:'#3b82f6',contacted:'#f28c28',proposal:'#e05a20',closed:'#22c55e',lost:'#ef4444'};
+const colMap={new:'col-new',contacted:'col-contacted',proposal:'col-proposal',closed:'col-closed',lost:'col-lost'};
+
+function toast(m,ok=true){
+  let t=document.getElementById('_t');
+  if(!t){t=document.createElement('div');t.id='_t';t.style.cssText='position:fixed;bottom:1.5rem;right:1.5rem;z-index:99999;background:#12355b;color:white;border-left:4px solid #22c55e;border-radius:8px;padding:0.85rem 1.25rem;font-size:0.84rem;font-family:Inter,sans-serif;box-shadow:0 8px 30px rgba(0,0,0,0.2);transition:opacity 0.3s;';document.body.appendChild(t);}
+  t.textContent=m;t.style.borderLeftColor=ok?'#22c55e':'#ef4444';t.style.opacity='1';
+  setTimeout(()=>t.style.opacity='0',3500);
+}
+
+async function load(){
+  const r=await fetch('/admin/contacts-json');
+  if(r.status===401||r.redirected){window.location='/admin/login';return;}
+  contacts=await r.json();
+  render();
+}
+
+function render(){
+  const cols={new:[],contacted:[],proposal:[],closed:[],lost:[]};
+  contacts.forEach(c=>{const s=c.status||'new';(cols[s]||cols.new).push(c);});
+  document.getElementById('c-new').textContent=cols.new.length;
+  document.getElementById('c-contacted').textContent=cols.contacted.length;
+  document.getElementById('c-proposal').textContent=cols.proposal.length;
+  document.getElementById('c-won').textContent=cols.closed.length;
+  ['new','contacted','proposal','won','lost'].forEach(k=>{
+    document.getElementById('b-'+k).textContent=k==='won'?cols.closed.length:cols[k]?.length||0;
+  });
+  Object.entries(cols).forEach(([s,leads])=>{
+    const col=document.getElementById(colMap[s]);
+    if(!col)return;
+    const hdr=col.querySelector('.col-hdr');
+    col.innerHTML='';col.appendChild(hdr);
+    if(!leads.length){const e=document.createElement('div');e.className='empty';e.textContent='No leads';col.appendChild(e);return;}
+    const today=new Date().toISOString().split('T')[0];
+    leads.forEach(c=>{
+      const ov=c.follow_up_date&&c.follow_up_date<today;
+      const d=document.createElement('div');
+      d.className='lead-card';d.style.borderLeftColor=colors[s];
+      d.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:flex-start;">
+        <div class="lc-name">${c.full_name}${c.priority==='high'?'<span style="color:#ef4444;margin-left:3px;font-size:0.7rem;">●</span>':''}</div>
+        ${c.source&&c.source!=='Website Form'?`<span style="font-size:0.6rem;background:#f0ebe5;color:#aaa;padding:0.08rem 0.3rem;border-radius:5px;">${c.source}</span>`:''}
+      </div>
+      <div class="lc-co">${c.company||c.designation||'—'}</div>
+      <div class="lc-meta">
+        <span class="lc-svc">${(c.service_interest||'General').slice(0,18)}</span>
+        <span class="lc-dt">${c.submitted_at.split(',')[0]}</span>
+      </div>
+      ${c.follow_up_date?`<div style="font-size:0.66rem;margin-top:0.35rem;color:${ov?'#ef4444':'#bbb'};">📅 ${c.follow_up_date}${ov?' ⚠️':''}</div>`:''}
+      ${c.notes?`<div style="font-size:0.68rem;color:#bbb;margin-top:0.3rem;border-top:1px solid #f0ebe5;padding-top:0.3rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">📝 ${c.notes}</div>`:''}`;
+      d.onclick=()=>openDetail(c);
+      col.appendChild(d);
+    });
+  });
+}
+
+function openDetail(c){
+  activeId=c.id;
+  document.getElementById('m-name').textContent=c.full_name;
+  document.getElementById('m-co').textContent=[c.company,c.designation].filter(Boolean).join(' · ')||'—';
+  document.getElementById('m-email').textContent=c.email||'—';
+  document.getElementById('m-phone').textContent=c.phone;
+  document.getElementById('m-city').textContent=c.city||'—';
+  document.getElementById('m-svc').textContent=c.service_interest||'—';
+  document.getElementById('m-msg').textContent=c.message||'—';
+  document.getElementById('m-status').value=c.status||'new';
+  document.getElementById('m-priority').value=c.priority||'normal';
+  document.getElementById('m-fu').value=c.follow_up_date||'';
+  document.getElementById('m-notes').value=c.notes||'';
+  const pb=document.getElementById('m-pb');
+  pb.className='pb '+(c.priority==='high'?'ph':'pn');
+  pb.textContent=c.priority==='high'?'🔴 High':'';
+  document.getElementById('m-sb').textContent=c.source||'Website Form';
+  const lw=document.getElementById('m-lc-wrap');
+  if(c.last_contacted){lw.style.display='block';document.getElementById('m-lc').textContent=c.last_contacted;}
+  else{lw.style.display='none';}
+  const ph=(c.phone||'').replace(/[^0-9]/g,'');
+  document.getElementById('m-wa').href=`https://wa.me/${ph.startsWith('91')?ph:'91'+ph}?text=Hi%20${encodeURIComponent(c.full_name)}%2C%20this%20is%20Total%20Tech%20Serve!`;
+  document.getElementById('m-em').href=`mailto:${c.email}?subject=Following up — Total Tech Serve`;
+  const hd=document.getElementById('m-hist');hd.innerHTML='';
+  if(c.history&&c.history.length){
+    [...c.history].reverse().forEach(h=>{
+      const d=document.createElement('div');d.className='hi';
+      d.innerHTML=`<span>📌</span><div><div class="ha">${h.action}</div><div class="hd">${h.detail}</div><div class="htime">${h.created_at}</div></div>`;
+      hd.appendChild(d);
+    });
+  }else{hd.innerHTML='<div style="font-size:0.76rem;color:#ccc;">No activity yet.</div>';}
+  document.getElementById('detailModal').style.display='flex';
+}
+function closeDetail(){document.getElementById('detailModal').style.display='none';activeId=null;}
+function markC(){const s=document.getElementById('m-status');if(s.value==='new')s.value='contacted';}
+
+async function save(){
+  if(!activeId)return;
+  const fd=new FormData();
+  fd.append('status',document.getElementById('m-status').value);
+  fd.append('priority',document.getElementById('m-priority').value);
+  fd.append('follow_up_date',document.getElementById('m-fu').value);
+  fd.append('notes',document.getElementById('m-notes').value);
+  const r=await fetch(`/admin/update/${activeId}`,{method:'POST',body:fd});
+  const d=await r.json();
+  if(d.success){toast('✓ Lead updated!');closeDetail();load();}else{toast('Update failed.',false);}
+}
+
+async function del(){
+  if(!activeId||!confirm('Delete this lead permanently?'))return;
+  const r=await fetch(`/admin/delete-lead/${activeId}`,{method:'POST'});
+  const d=await r.json();
+  if(d.success){toast('Lead deleted.');closeDetail();load();}
+}
+
+function openAdd(){document.getElementById('addModal').style.display='flex';}
+function closeAdd(){document.getElementById('addModal').style.display='none';}
+
+async function saveAdd(){
+  const name=document.getElementById('a-name').value.trim();
+  const phone=document.getElementById('a-phone').value.trim();
+  if(!name||!phone){toast('Name and phone required.',false);return;}
+  const fd=new FormData();
+  fd.append('full_name',name);fd.append('phone',phone);
+  fd.append('email',document.getElementById('a-email').value.trim());
+  fd.append('company',document.getElementById('a-co').value.trim());
+  fd.append('city',document.getElementById('a-city').value.trim());
+  fd.append('service_interest',document.getElementById('a-svc').value);
+  fd.append('status',document.getElementById('a-status').value);
+  fd.append('priority',document.getElementById('a-pri').value);
+  fd.append('source',document.getElementById('a-src').value);
+  fd.append('notes',document.getElementById('a-notes').value.trim());
+  const r=await fetch('/admin/add-lead',{method:'POST',body:fd});
+  const d=await r.json();
+  if(d.success){
+    toast('✓ Lead added!');closeAdd();
+    ['a-name','a-phone','a-email','a-co','a-city','a-notes'].forEach(id=>document.getElementById(id).value='');
+    load();
+  }else{toast(d.error||'Failed.',false);}
+}
+
+document.getElementById('detailModal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeDetail();});
+document.getElementById('addModal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeAdd();});
+load();
+</script>
+</body>
+</html>

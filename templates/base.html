@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{% block title %}Total Tech Serve — IT, Security & Insurance Solutions{% endblock %}</title>
+  <meta name="description" content="{% block meta_desc %}Total Tech Serve offers comprehensive IT AMC, repair, network security, CCTV, hardware and insurance solutions for businesses across Bengaluru.{% endblock %}"/>
+  <meta name="keywords" content="IT AMC Bengaluru, computer repair, CCTV installation, network setup, business insurance, IT support, hardware rental"/>
+  <meta property="og:title" content="Total Tech Serve — One-Touch IT & Insurance Solutions"/>
+  <meta property="og:description" content="Certified engineers, 24/6 support, and end-to-end technology solutions."/>
+  <meta property="og:type" content="website"/>
+  <link rel="canonical" href="https://totaltechserve.com{{ request.path }}"/>
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}"/>
+  <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='images/favicon.svg') }}"/>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"LocalBusiness","name":"Total Tech Serve","description":"One-touch IT, insurance and business innovation","telephone":"+91-9886999575","email":"totaltechserve@totaltechserve.com","address":{"@type":"PostalAddress","addressLocality":"Bengaluru","addressRegion":"Karnataka","addressCountry":"IN"}}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+<!-- ===== PAGE TRANSITION ===== -->
+<div id="page-transition">
+  <div class="pt-panel"></div>
+  <div class="pt-panel"></div>
+  <div class="pt-panel"></div>
+</div>
+<div id="pt-logo">
+  <img src="{{ url_for('static', filename='images/logo-white.png') }}" alt="Total Tech Serve"/>
+</div>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar transparent" id="navbar" role="navigation">
+  <div class="nav-inner">
+    <a href="{{ url_for('index') }}" class="nav-logo nav-link-internal">
+      <img src="{{ url_for('static', filename='images/logo-white.png') }}"
+               alt="Total Tech Serve — Trust | Technology | Service"
+               style="height:54px;width:auto;object-fit:contain;"
+               onerror="this.src='{{ url_for('static', filename='images/logo.png') }}'"/>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="{{ url_for('index') }}" class="nav-link-internal {% if request.endpoint == 'index' %}active{% endif %}">Home</a></li>
+      <li><a href="{{ url_for('services') }}" class="nav-link-internal {% if request.endpoint == 'services' %}active{% endif %}">Services</a></li>
+      <li><a href="{{ url_for('about') }}" class="nav-link-internal {% if request.endpoint == 'about' %}active{% endif %}">About Us</a></li>
+      <li><a href="{{ url_for('crm') }}" class="nav-link-internal {% if request.endpoint == 'crm' %}active{% endif %}">CRM</a></li>
+      <li><a href="{{ url_for('contact') }}" class="nav-link-internal {% if request.endpoint == 'contact' %}active{% endif %}">Contact</a></li>
+      <li class="nav-cta"><a href="{{ url_for('contact') }}" class="nav-link-internal">Get a Quote</a></li>
+      <li><a href="{{ url_for('admin_login') }}" style="color:rgba(247,169,85,0.75);font-size:0.78rem;padding:0.4rem 0.75rem;border:1px solid rgba(247,169,85,0.2);border-radius:6px;transition:all 0.2s;" onmouseover="this.style.background='rgba(247,169,85,0.1)'" onmouseout="this.style.background='transparent'">🔐 Admin</a></li>
+    </ul>
+  </div>
+</nav>
+
+{% block content %}{% endblock %}
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <img src="{{ url_for('static', filename='images/logo-white.png') }}"
+             alt="Total Tech Serve"
+             style="height:70px;width:auto;object-fit:contain;margin-bottom:1.25rem;display:block;"/>
+        <p style="font-size:0.875rem;color:rgba(255,255,255,0.45);max-width:280px;line-height:1.8;">
+          One-touch solution for IT, insurance &amp; business innovation. Trusted by leading organisations across Bengaluru.
+        </p>
+        <div style="display:flex;gap:0.75rem;margin-top:1.5rem;">
+          <a href="mailto:totaltechserve@totaltechserve.com" style="width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;transition:all 0.2s;" onmouseover="this.style.background='rgba(201,162,39,0.2)';this.style.borderColor='rgba(201,162,39,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.06)';this.style.borderColor='rgba(255,255,255,0.1)'">
+            <img src="{{ url_for('static', filename='images/gmail.svg') }}" alt="Email" style="width:18px;height:18px;"/>
+          </a>
+          <a href="https://wa.me/919886999575?text=Hi%20Total%20Tech%20Serve%2C%20I%20would%20like%20to%20know%20more%20about%20your%20services." target="_blank" style="width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;transition:all 0.2s;" onmouseover="this.style.background='rgba(37,211,102,0.2)';this.style.borderColor='rgba(37,211,102,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.06)';this.style.borderColor='rgba(255,255,255,0.1)'">
+            <img src="{{ url_for('static', filename='images/whatsapp.svg') }}" alt="WhatsApp" style="width:18px;height:18px;"/>
+          </a>
+          <a href="https://www.instagram.com/total_tech_serve__it__cctv?igsh=MTFueDN6eDF6Y3Jwcw==" target="_blank" style="width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;transition:all 0.2s;" onmouseover="this.style.background='rgba(220,39,67,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.06)';this.style.borderColor='rgba(255,255,255,0.1)'">
+            <img src="{{ url_for('static', filename='images/instagram.svg') }}" alt="Instagram" style="width:18px;height:18px;"/>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="{{ url_for('services') }}#amc" class="nav-link-internal">IT AMC</a></li>
+          <li><a href="{{ url_for('services') }}#repair" class="nav-link-internal">Repair &amp; Diagnostics</a></li>
+          <li><a href="{{ url_for('services') }}#network" class="nav-link-internal">Network &amp; Security</a></li>
+          <li><a href="{{ url_for('services') }}#hardware" class="nav-link-internal">Hardware Sales &amp; Rentals</a></li>
+          <li><a href="{{ url_for('services') }}#insurance" class="nav-link-internal">Insurance Services</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="{{ url_for('about') }}" class="nav-link-internal">About Us</a></li>
+          <li><a href="{{ url_for('about') }}#clients" class="nav-link-internal">Our Clients</a></li>
+          <li><a href="{{ url_for('admin_login') }}" class="nav-link-internal">Admin Panel</a></li>
+          <li><a href="{{ url_for('admin_contacts') }}" class="nav-link-internal">HR Admin</a></li>
+          <li><a href="{{ url_for('contact') }}" class="nav-link-internal">Contact Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li style="color:rgba(255,255,255,0.45);font-size:0.85rem;margin-bottom:0.6rem;">📍 Bengaluru, Karnataka</li>
+          <li style="margin-bottom:0.4rem;"><a href="tel:+919886999575" style="color:rgba(255,255,255,0.45);font-size:0.85rem;transition:color 0.2s;" onmouseover="this.style.color='#f7a955'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">📞 +91 98869 99575</a></li>
+          <li style="margin-bottom:0.6rem;"><a href="tel:+919686634787" style="color:rgba(255,255,255,0.45);font-size:0.85rem;transition:color 0.2s;" onmouseover="this.style.color='#f7a955'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">📞 +91 96866 34787</a></li>
+          <li style="margin-bottom:0.6rem;"><a href="mailto:totaltechserve@totaltechserve.com" style="color:rgba(255,255,255,0.45);font-size:0.82rem;transition:color 0.2s;word-break:break-all;" onmouseover="this.style.color='#0f766e'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">✉️ totaltechserve@totaltechserve.com</a></li>
+          <li style="margin-top:1rem;font-size:0.75rem;color:rgba(255,255,255,0.25);">⏰ 24/6 Support Available</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© <span id="copyright-year">2026</span> Total Tech Serve. All rights reserved.</span>
+    <span>Technology · Security · Insurance · Innovation</span>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<!-- ===== AI CHAT ===== -->
+<button id="ai-chat-btn" aria-label="Chat with TechBot">
+  <div id="ai-chat-badge">AI</div>
+  <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    <circle cx="9" cy="10" r="0.5" fill="white"/><circle cx="12" cy="10" r="0.5" fill="white"/><circle cx="15" cy="10" r="0.5" fill="white"/>
+  </svg>
+</button>
+
+<div id="ai-chat-window">
+  <div class="chat-header">
+    <div class="chat-avatar">🤖</div>
+    <div class="chat-header-info">
+      <strong>TechBot — Total Tech Serve</strong>
+      <span>🟢 Online · Replies instantly</span>
+    </div>
+    <button class="chat-close" id="chat-close-btn">✕</button>
+  </div>
+  <div class="chat-messages" id="chat-messages">
+    <div class="msg bot">
+      <div class="msg-icon">🤖</div>
+      <div class="msg-bubble">Hi! I'm TechBot 👋<br/>Ask me about IT AMC, repair, CCTV, hardware, insurance — or anything about Total Tech Serve!</div>
+    </div>
+  </div>
+  <div class="chat-quick-btns" id="quick-btns">
+    <button class="quick-btn" onclick="sendQuick('What is IT AMC?')">IT AMC</button>
+    <button class="quick-btn" onclick="sendQuick('What services do you offer?')">Services</button>
+    <button class="quick-btn" onclick="sendQuick('How do I contact Total Tech Serve?')">Contact</button>
+    <button class="quick-btn" onclick="sendQuick('Do you offer hardware rental?')">Hardware rental</button>
+    <button class="quick-btn" onclick="sendQuick('What insurance services do you provide?')">Insurance</button>
+    <button class="quick-btn" onclick="sendQuick('What is CCTV surveillance service?')">CCTV</button>
+  </div>
+  <div class="chat-input-row">
+    <textarea id="chat-input" placeholder="Type your question..." rows="1"></textarea>
+    <button id="chat-send">
+      <svg viewBox="0 0 24 24"><path d="M22 2L11 13M22 2L15 22l-4-9-9-4 20-7z"/></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+// ===== PAGE TRANSITION =====
+const panels = document.querySelectorAll('.pt-panel');
+const ptLogo = document.getElementById('pt-logo');
+
+function transitionOut(href) {
+  panels.forEach(p => { p.style.transformOrigin = 'bottom'; p.classList.add('entering'); });
+  setTimeout(() => ptLogo.classList.add('show'), 300);
+  setTimeout(() => {
+    ptLogo.classList.remove('show');
+    panels.forEach(p => { p.style.transformOrigin = 'top'; p.classList.remove('entering'); p.classList.add('leaving'); });
+    window.location.href = href;
+  }, 800);
+}
+
+// Page load: panels slide away
+window.addEventListener('DOMContentLoaded', () => {
+  panels.forEach(p => { p.style.transformOrigin = 'top'; p.classList.add('leaving'); });
+  setTimeout(() => panels.forEach(p => p.classList.remove('leaving')), 700);
+});
+
+// Intercept internal links
+document.addEventListener('click', (e) => {
+  const a = e.target.closest('a.nav-link-internal, a[data-transition]');
+  if (!a) return;
+  const href = a.getAttribute('href');
+  if (!href || href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto') || href.startsWith('tel')) return;
+  if (href === window.location.pathname) return;
+  e.preventDefault();
+  transitionOut(href);
+});
+
+// ===== FOOTER YEAR (always current) =====
+const cyEl = document.getElementById('copyright-year');
+if (cyEl) cyEl.textContent = new Date().getFullYear();
+
+// ===== NAVBAR SCROLL =====
+const navbar = document.getElementById('navbar');
+let lastY = 0;
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  if (y > 60) { navbar.classList.remove('transparent'); navbar.classList.add('scrolled'); }
+  else { navbar.classList.add('transparent'); navbar.classList.remove('scrolled'); }
+  lastY = y;
+}, { passive: true });
+
+// ===== MOBILE NAV =====
+const navToggle = document.getElementById('navToggle');
+const navLinks  = document.getElementById('navLinks');
+navToggle.addEventListener('click', () => {
+  const open = navLinks.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', open);
+});
+
+// ===== SCROLL REVEAL =====
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      revealObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .stagger, .pop-in, .pop-stagger').forEach(el => revealObserver.observe(el));
+
+// ===== BUTTON RIPPLE / POP FEEDBACK =====
+document.addEventListener('click', (e) => {
+  const btn = e.target.closest('.btn-ripple, .btn');
+  if (!btn) return;
+  const rect = btn.getBoundingClientRect();
+  const dot = document.createElement('span');
+  const size = Math.max(rect.width, rect.height) * 1.2;
+  dot.className = 'ripple-dot';
+  dot.style.width = dot.style.height = size + 'px';
+  dot.style.left = (e.clientX - rect.left - size / 2) + 'px';
+  dot.style.top  = (e.clientY - rect.top  - size / 2) + 'px';
+  btn.style.position = btn.style.position || 'relative';
+  btn.appendChild(dot);
+  setTimeout(() => dot.remove(), 650);
+});
+
+// ===== COUNTER ANIMATION =====
+function animateCounter(el, target, suffix='') {
+  let start = 0;
+  const duration = 1800;
+  const step = timestamp => {
+    if (!step.start) step.start = timestamp;
+    const progress = Math.min((timestamp - step.start) / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.floor(ease * target) + suffix;
+    if (progress < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const el = e.target;
+      const val = el.dataset.val;
+      const suffix = el.dataset.suffix || '';
+      animateCounter(el, parseInt(val), suffix);
+      counterObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('[data-counter]').forEach(el => counterObserver.observe(el));
+
+// ===== TOAST =====
+function showToast(msg, success=true) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.borderLeftColor = success ? 'var(--gold)' : 'var(--orange)';
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 4000);
+}
+
+// ===== AI CHAT =====
+const chatBtn    = document.getElementById('ai-chat-btn');
+const chatWindow = document.getElementById('ai-chat-window');
+const chatClose  = document.getElementById('chat-close-btn');
+const chatMsgs   = document.getElementById('chat-messages');
+const chatInput  = document.getElementById('chat-input');
+const chatSend   = document.getElementById('chat-send');
+const quickBtns  = document.getElementById('quick-btns');
+let chatOpen = false, isTyping = false;
+const history = [];
+
+const SYSTEM_PROMPT = `You are TechBot, a friendly AI assistant for Total Tech Serve, an IT services and insurance company in Bengaluru, India.
+Contact: +91 98869 99575 | totaltechserve@totaltechserve.com | 24/6 support
+Services: IT AMC (quarterly maintenance, 24/6 support, antivirus, backup, 3 on-site visits/month, 4x annual, 12-month coverage), Repair & Diagnostics, Network & Security (CCTV, Access Control, Internet Setup), Hardware Sales & Rentals, Insurance Services (corporate, equipment, cyber, group, individual).
+Clients: Zoreda, NKSQUARED, Zoomcar India, Karle Infra, BnB Infra, NBR Group, Samyuktha News, SMA Sera, AS Properties.
+Keep responses under 100 words. Be friendly and helpful.`;
+
+function toggleChat() {
+  chatOpen = !chatOpen;
+  chatWindow.classList.toggle('open', chatOpen);
+  chatBtn.style.background = chatOpen ? 'linear-gradient(135deg,var(--gold),var(--orange))' : 'linear-gradient(135deg,var(--navy),var(--navy-light))';
+  document.getElementById('ai-chat-badge').style.display = chatOpen ? 'none' : 'flex';
+  if (chatOpen) setTimeout(() => chatInput.focus(), 300);
+}
+
+chatBtn.addEventListener('click', toggleChat);
+chatClose.addEventListener('click', toggleChat);
+
+function addMsg(text, role) {
+  const div = document.createElement('div');
+  div.className = 'msg ' + role;
+  div.innerHTML = `<div class="msg-icon">${role==='bot'?'🤖':'👤'}</div><div class="msg-bubble">${text.replace(/\n/g,'<br/>')}</div>`;
+  chatMsgs.appendChild(div);
+  chatMsgs.scrollTop = chatMsgs.scrollHeight;
+}
+
+function showTyping() {
+  const div = document.createElement('div');
+  div.className = 'msg bot'; div.id = 'typing-ind';
+  div.innerHTML = '<div class="msg-icon">🤖</div><div class="msg-bubble"><div class="chat-typing"><span></span><span></span><span></span></div></div>';
+  chatMsgs.appendChild(div); chatMsgs.scrollTop = chatMsgs.scrollHeight;
+}
+function hideTyping() { const el = document.getElementById('typing-ind'); if (el) el.remove(); }
+
+async function sendMessage(text) {
+  if (!text.trim() || isTyping) return;
+  text = text.trim();
+  quickBtns.style.display = 'none';
+  addMsg(text, 'user');
+  history.push({ role: 'user', content: text });
+  chatInput.value = ''; chatInput.style.height = 'auto';
+  isTyping = true; showTyping();
+  try {
+    const res = await fetch('/api/chat', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ system: SYSTEM_PROMPT, messages: history }) });
+    hideTyping();
+    const data = await res.json();
+    const reply = data.reply || 'Sorry, please try again.';
+    history.push({ role: 'assistant', content: reply });
+    addMsg(reply, 'bot');
+  } catch {
+    hideTyping();
+    addMsg('Having trouble connecting. Call us at +91 98869 99575 or WhatsApp us!', 'bot');
+  }
+  isTyping = false;
+}
+
+function sendQuick(text) { if (!chatOpen) toggleChat(); sendMessage(text); }
+chatSend.addEventListener('click', () => sendMessage(chatInput.value));
+chatInput.addEventListener('keydown', e => { if (e.key==='Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(chatInput.value); } });
+chatInput.addEventListener('input', () => { chatInput.style.height='auto'; chatInput.style.height=Math.min(chatInput.scrollHeight,100)+'px'; });
+
+// ===== PARTICLES =====
+(function createParticles() {
+  const container = document.querySelector('.hero-particles');
+  if (!container) return;
+  for (let i = 0; i < 20; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.cssText = `width:${2+Math.random()*4}px;height:${2+Math.random()*4}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${3+Math.random()*4}s;--delay:${Math.random()*4}s;`;
+    container.appendChild(p);
+  }
+})();
+
+// ===== SCROLL INDICATOR =====
+document.querySelector('.scroll-indicator')?.addEventListener('click', () => {
+  window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+});
+</script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

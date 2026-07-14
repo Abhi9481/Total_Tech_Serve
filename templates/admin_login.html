@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Login — Total Tech Serve</title>
+  <link rel="icon" href="/static/images/favicon.ico"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Inter',sans-serif;background:linear-gradient(135deg,#0c2340 0%,#12355b 60%,#1a3a5f 100%);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1rem;}
+    .card{background:white;border-radius:20px;padding:2.5rem;width:100%;max-width:400px;box-shadow:0 24px 80px rgba(0,0,0,0.4);}
+    .logo{text-align:center;margin-bottom:1.5rem;}
+    .logo img{height:65px;width:auto;object-fit:contain;}
+    .icon{text-align:center;font-size:2.2rem;margin-bottom:0.5rem;}
+    h1{text-align:center;font-size:1.25rem;font-weight:800;color:#12355b;margin-bottom:0.25rem;}
+    .sub{text-align:center;font-size:0.78rem;color:#aaa;margin-bottom:1.5rem;}
+    .badge{text-align:center;margin-bottom:1.5rem;}
+    .badge span{background:#eef2f6;color:#f28c28;border:1px solid #fdd0b0;border-radius:20px;padding:0.25rem 1rem;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;}
+    .error{background:#fee2e2;color:#dc2626;border:1px solid #fca5a5;border-radius:8px;padding:0.75rem 1rem;font-size:0.82rem;margin-bottom:1rem;text-align:center;}
+    .fg{margin-bottom:1rem;}
+    .fg label{display:block;font-size:0.8rem;font-weight:600;color:#12355b;margin-bottom:0.35rem;}
+    .fg input{width:100%;padding:0.75rem 1rem;border:1.5px solid #e0d8d0;border-radius:10px;font-size:0.9rem;font-family:inherit;outline:none;transition:border-color 0.2s;}
+    .fg input:focus{border-color:#12355b;box-shadow:0 0 0 3px rgba(18,53,91,0.08);}
+    .btn{width:100%;padding:0.85rem;background:linear-gradient(135deg,#12355b,#1a3a5f);color:white;border:none;border-radius:10px;font-size:0.95rem;font-weight:700;cursor:pointer;transition:all 0.2s;margin-top:0.5rem;}
+    .btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(18,53,91,0.3);}
+    .back{text-align:center;margin-top:1.25rem;}
+    .back a{color:#aaa;font-size:0.78rem;text-decoration:none;}
+    .back a:hover{color:#12355b;}
+  </style>
+</head>
+<body>
+<div class="card">
+  <div class="logo"><img src="/static/images/logo.png" alt="Total Tech Serve"/></div>
+  <div class="icon">🔐</div>
+  <h1>Admin Login</h1>
+  <div class="sub">Restricted access — authorised personnel only</div>
+  <div class="badge"><span>🛡️ SECURE ADMIN PANEL</span></div>
+  {% if error %}<div class="error">❌ {{ error }}</div>{% endif %}
+  <form method="POST">
+    <div class="fg"><label>Username</label><input type="text" name="username" placeholder="Enter admin username" required autocomplete="username"/></div>
+    <div class="fg"><label>Password</label><input type="password" name="password" placeholder="Enter password" required autocomplete="current-password"/></div>
+    <button type="submit" class="btn">🔓 Login to Admin Panel</button>
+  </form>
+  <div class="back"><a href="/">← Back to Website</a></div>
+</div>
+</body>
+</html>

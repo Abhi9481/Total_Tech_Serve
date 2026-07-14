@@ -1,0 +1,38 @@
+"""
+Generate the Total Tech Serve logo as SVG
+Run: python generate_logo.py
+"""
+
+svg = '''<svg xmlns="http://www.w3.org/2000/svg" width="220" height="70" viewBox="0 0 220 70">
+  <defs>
+    <style>
+      .logo-t { font-family: "Segoe UI", Arial, sans-serif; font-weight: 800; }
+      .logo-text-main { font-family: "Segoe UI", Arial, sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 2px; }
+      .logo-text-sub { font-family: "Segoe UI", Arial, sans-serif; font-weight: 400; font-size: 7px; letter-spacing: 3px; }
+      .logo-text-tagline { font-family: "Segoe UI", Arial, sans-serif; font-weight: 300; font-size: 5.5px; letter-spacing: 1.5px; }
+    </style>
+  </defs>
+
+  <!-- Left T shape in dark navy -->
+  <rect x="4" y="6" width="28" height="6" rx="1" fill="#1a2a4a"/>
+  <rect x="14" y="6" width="8" height="36" rx="1" fill="#1a2a4a"/>
+
+  <!-- Right T shape in gold -->
+  <rect x="28" y="6" width="26" height="6" rx="1" fill="#c9a227"/>
+  <rect x="38" y="6" width="8" height="36" rx="1" fill="#c9a227"/>
+
+  <!-- Decorative underline -->
+  <rect x="4" y="46" width="50" height="1.5" rx="0.75" fill="#1a2a4a"/>
+  <rect x="4" y="46" width="25" height="1.5" rx="0.75" fill="#c9a227"/>
+
+  <!-- Company name text -->
+  <text x="62" y="22" class="logo-text-main" fill="#1a2a4a">TOTAL TECH</text>
+  <text x="62" y="38" class="logo-text-main" fill="#1a2a4a">SERVE</text>
+  <text x="62" y="50" class="logo-text-tagline" fill="#888">COMPUTERS &amp; INSURANCE</text>
+</svg>'''
+
+import os
+out_path = os.path.join(os.path.dirname(__file__), 'static', 'images', 'logo.svg')
+with open(out_path, 'w') as f:
+    f.write(svg)
+print(f"Logo saved to {out_path}")
