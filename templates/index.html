@@ -87,7 +87,7 @@
       <div class="heading-line"></div>
     </div>
     <div class="services-grid pop-stagger">
-      <article class="glow-card">
+      <a href="{{ url_for('services') }}#amc" class="glow-card glow-card-link nav-link-internal">
         <div class="glow-card-media">
           <video class="glow-card-video" autoplay muted loop playsinline preload="metadata" poster="{{ url_for('static', filename='images/services/thumb/amc.jpg') }}">
             <source src="{{ url_for('static', filename='videos/amc.mp4') }}" type="video/mp4"/>
@@ -96,10 +96,9 @@
         <div class="glow-card-body">
           <h3>IT AMC</h3>
           <p>Annual Maintenance Contracts with quarterly preventive visits, health checks, malware removal, and OS updates to keep your systems at peak performance.</p>
-          <a href="{{ url_for('services') }}#amc" class="btn btn-navy btn-glow btn-ripple nav-link-internal" style="margin-top:1.2rem;padding:0.5rem 1.1rem;font-size:0.82rem;">Learn More →</a>
         </div>
-      </article>
-      <article class="glow-card">
+      </a>
+      <a href="{{ url_for('services') }}#repair" class="glow-card glow-card-link nav-link-internal">
         <div class="glow-card-media">
           <video class="glow-card-video" autoplay muted loop playsinline preload="metadata" poster="{{ url_for('static', filename='images/services/thumb/repair.jpg') }}">
             <source src="{{ url_for('static', filename='videos/repair.mp4') }}" type="video/mp4"/>
@@ -108,10 +107,9 @@
         <div class="glow-card-body">
           <h3>Repair &amp; Diagnostics</h3>
           <p>Certified engineers providing advanced fault detection and repair for desktops, laptops, servers, printers, and networking equipment.</p>
-          <a href="{{ url_for('services') }}#repair" class="btn btn-navy btn-glow btn-ripple nav-link-internal" style="margin-top:1.2rem;padding:0.5rem 1.1rem;font-size:0.82rem;">Learn More →</a>
         </div>
-      </article>
-      <article class="glow-card">
+      </a>
+      <a href="{{ url_for('services') }}#network" class="glow-card glow-card-link nav-link-internal">
         <div class="glow-card-media">
           <video class="glow-card-video" autoplay muted loop playsinline preload="metadata" poster="{{ url_for('static', filename='images/services/thumb/network.jpg') }}">
             <source src="{{ url_for('static', filename='videos/network.mp4') }}" type="video/mp4"/>
@@ -120,10 +118,9 @@
         <div class="glow-card-body">
           <h3>Network &amp; Security</h3>
           <p>Internet setup, CCTV surveillance, access control, and network architecture — protecting your premises and keeping operations connected.</p>
-          <a href="{{ url_for('services') }}#network" class="btn btn-navy btn-glow btn-ripple nav-link-internal" style="margin-top:1.2rem;padding:0.5rem 1.1rem;font-size:0.82rem;">Learn More →</a>
         </div>
-      </article>
-      <article class="glow-card">
+      </a>
+      <a href="{{ url_for('services') }}#hardware" class="glow-card glow-card-link nav-link-internal">
         <div class="glow-card-media">
           <video class="glow-card-video" autoplay muted loop playsinline preload="metadata" poster="{{ url_for('static', filename='images/services/thumb/hardware.jpg') }}">
             <source src="{{ url_for('static', filename='videos/hardware.mp4') }}" type="video/mp4"/>
@@ -132,10 +129,9 @@
         <div class="glow-card-body">
           <h3>Hardware Sales &amp; Rentals</h3>
           <p>Desktops, laptops, servers, and accessories for purchase or flexible rental. Emergency backup systems provided when your primary hardware needs repair.</p>
-          <a href="{{ url_for('services') }}#hardware" class="btn btn-navy btn-glow btn-ripple nav-link-internal" style="margin-top:1.2rem;padding:0.5rem 1.1rem;font-size:0.82rem;">Learn More →</a>
         </div>
-      </article>
-      <article class="glow-card">
+      </a>
+      <a href="{{ url_for('services') }}#insurance" class="glow-card glow-card-link nav-link-internal">
         <div class="glow-card-media">
           <video class="glow-card-video" autoplay muted loop playsinline preload="metadata" poster="{{ url_for('static', filename='images/services/thumb/insurance.jpg') }}">
             <source src="{{ url_for('static', filename='videos/insurance.mp4') }}" type="video/mp4"/>
@@ -144,9 +140,8 @@
         <div class="glow-card-body">
           <h3>Insurance Services</h3>
           <p>Corporate and individual insurance guidance tailored to your industry — protecting your business, assets, and people with the right coverage.</p>
-          <a href="{{ url_for('services') }}#insurance" class="btn btn-navy btn-glow btn-ripple nav-link-internal" style="margin-top:1.2rem;padding:0.5rem 1.1rem;font-size:0.82rem;">Learn More →</a>
         </div>
-      </article>
+      </a>
       <article class="glow-card" style="background:var(--navy-dark);border-color:rgba(247,169,85,0.25);display:flex;align-items:center;">
         <div class="glow-card-body" style="padding:2rem;">
           <div style="font-size:2.5rem;margin-bottom:1rem;color:var(--peach);animation:floatChip 3s ease-in-out infinite;display:inline-block;">→</div>
@@ -299,41 +294,6 @@
     </div>
   </div>
 </section>
-
-<!-- COMPARISON TABLE -->
-<section class="section">
-  <div class="container">
-    <div class="section-header reveal">
-      <span class="section-eyebrow">Why We're Different</span>
-      <h2>Total Tech Serve vs Others</h2>
-      <div class="heading-line"></div>
-    </div>
-    <div class="reveal" style="overflow:hidden;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);">
-      <table class="compare-table">
-        <thead>
-          <tr>
-            <th style="text-align:left;">Feature</th>
-            <th style="background:linear-gradient(135deg,var(--navy),var(--navy-light));color:var(--gold);">Total Tech Serve</th>
-            <th>Others</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>Single Point of Contact for IT + Insurance</td><td class="compare-us"><span class="check-yes">✓</span></td><td><span class="check-no">✗</span></td></tr>
-          <tr><td>24/6 Dedicated Support</td><td class="compare-us"><span class="check-yes">✓</span></td><td><span class="check-no">✗</span></td></tr>
-          <tr><td>Quarterly Preventive Maintenance</td><td class="compare-us"><span class="check-yes">✓</span></td><td><span class="check-maybe">?</span></td></tr>
-          <tr><td>On-Site Visits Included (3×/month)</td><td class="compare-us"><span class="check-yes">✓</span></td><td><span class="check-no">✗</span></td></tr>
-          <tr><td>Emergency Backup Hardware</td><td class="compare-us"><span class="check-yes">✓</span></td><td><span class="check-no">✗</span></td></tr>
-          <tr><td>CCTV + Access Control</td><td class="compare-us"><span class="check-yes">✓</span></td><td><span class="check-maybe">?</span></td></tr>
-          <tr><td>Certified Engineers</td><td class="compare-us"><span class="check-yes">✓</span></td><td><span class="check-maybe">?</span></td></tr>
-          <tr><td>Special Pricing on Spare Parts</td><td class="compare-us"><span class="check-yes">✓</span></td><td><span class="check-no">✗</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-
-
 
 <!-- PARTNER LOGOS -->
 <section class="section section-alt" id="partners">
